@@ -6,32 +6,32 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      thoughts {
+      recipes {
         _id
-        thoughtText
+        recipeText
         createdAt
       }
     }
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+export const QUERY_RECIPES = gql`
+  query getRecipes {
+    recipes {
       _id
-      thoughtText
-      thoughtAuthor
+      recipeText
+      recipeAuthor
       createdAt
     }
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_SINGLE_RECIPE = gql`
+  query getSingleRecipe($recipeId: ID!) {
+    recipe(recipeId: $recipeId) {
       _id
-      thoughtText
-      thoughtAuthor
+      recipeText
+      recipeAuthor
       createdAt
       comments {
         _id
@@ -51,10 +51,10 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      thoughts {
+      recipes {
         _id
-        thoughtText
-        thoughtAuthor
+        recipeText
+        recipeAuthor
         createdAt
       }
     }

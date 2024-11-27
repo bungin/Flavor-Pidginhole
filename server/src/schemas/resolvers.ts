@@ -1,4 +1,4 @@
-import { Thought, User } from '../models/index.js';
+import { Recipe, User } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js'; 
 
 // Define types for the arguments
@@ -19,47 +19,47 @@ interface UserArgs {
   username: string;
 }
 
-interface ThoughtArgs {
-  thoughtId: string;
+interface RecipeArgs {
+  recipeId: string;
 }
 
-interface AddThoughtArgs {
+interface AddRecipeArgs {
   input:{
-    thoughtText: string;
-    thoughtAuthor: string;
+    recipeText: string;
+    recipeAuthor: string;
   }
 }
 
 interface AddCommentArgs {
-  thoughtId: string;
+  recipeId: string;
   commentText: string;
 }
 
 interface RemoveCommentArgs {
-  thoughtId: string;
+  recipeId: string;
   commentId: string;
 }
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('recipes');
     },
     user: async (_parent: any, {username}: UserArgs) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('recipes');
     },
-    thoughts: async () => {
-      return await Thought.find().sort({ createdAt: -1 });
+    recipes: async () => {
+      return await Recipe.find().sort({ createdAt: -1 });
     },
-    thought: async (_parent: any, { thoughtId }: ThoughtArgs) => {
-      return await Thought.findOne({ _id: thoughtId }).populate({ path: 'comments', populate: 'commentAuthor'});
+    recipe: async (_parent: any, { recipeId }: RecipeArgs) => {
+      return await Recipe.findOne({ _id: recipeId }).populate({ path: 'comments', populate: 'commentAuthor'});
     },
     // Query to get the authenticated user's information
     // The 'me' query relies on the context to check if the user is authenticated
     me: async (_parent: any, _args: any, context: any) => {
-      // If the user is authenticated, find and return the user's information along with their thoughts
+      // If the user is authenticated, find and return the user's information along with their recipes
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('recipes');
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
@@ -100,23 +100,23 @@ const resolvers = {
       // Return the token and the user
       return { token, user };
     },
-    addThought: async (_parent: any, { input }: AddThoughtArgs, context: any) => {
+    addRecipe: async (_parent: any, { input }: AddRecipeArgs, context: any) => {
       if (context.user) {
-        const thought = await Thought.create({ ...input });
+        const recipe = await Recipe.create({ ...input });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
+          { $addToSet: { recipes: recipe._id } }
         );
 
-        return thought;
+        return recipe;
       }
       throw AuthenticationError;
     },
-    addComment: async (_parent: any, { thoughtId, commentText }: AddCommentArgs, context: any) => {
+    addComment: async (_parent: any, { recipeId, commentText }: AddCommentArgs, context: any) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Recipe.findOneAndUpdate(
+          { _id: recipeId },
           {
             $addToSet: {
               comments: { commentText, commentAuthor: context.user._id },
@@ -130,30 +130,30 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeThought: async (_parent: any, { thoughtId }: ThoughtArgs, context: any) => {
+    removeRecipe: async (_parent: any, { recipeId }: RecipeArgs, context: any) => {
       if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
+        const recipe = await Recipe.findOneAndDelete({
+          _id: recipeId,
+          recipeAuthor: context.user.username,
         });
 
-        if(!thought){
+        if(!recipe){
           throw AuthenticationError;
         }
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+          { $pull: { recipes: recipe._id } }
         );
 
-        return thought;
+        return recipe;
       }
       throw AuthenticationError;
     },
-    removeComment: async (_parent: any, { thoughtId, commentId }: RemoveCommentArgs, context: any) => {
+    removeComment: async (_parent: any, { recipeId, commentId }: RemoveCommentArgs, context: any) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
+        return Recipe.findOneAndUpdate(
+          { _id: recipeId },
           {
             $pull: {
               comments: {
