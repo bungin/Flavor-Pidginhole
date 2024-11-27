@@ -39,22 +39,52 @@ const commentSchema = new Schema<IComment>(
   }
 );
 
-const recipeSchema = new Schema<IRecipe>({
-  recipeDescription: {
-    type: String,
-    required: true,
-    minlength: 1,
-    maxlength: 500,
-    trim: true,
-  },
-  recipeIngredients: {
-    type: [String],
-    required: true,
-    validate: {
-      validator: (ingredients: string[]) => ingredients.length > 0,
-      message: "Must have at least one ingredient",
+const recipeSchema = new Schema<IRecipe>(
+  {
+    recipeAuthor: {
+      type: String,
+      required: true,
+      trim: true,
     },
+    recipeName: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 30,
+      trim: true,
+    },
+    recipeDescription: {
+      type: String,
+      required: true,
+      minlength: 1,
+      maxlength: 500,
+      trim: true,
+    },
+    recipeIngredients: {
+      type: [String],
+      required: true,
+      validate: {
+        validator: (ingredients: string[]) => ingredients.length > 0,
+        message: "Must have at least one ingredient",
+      },
+    },
+    recipeInstructions: {
+      type: [String],
+      required: true,
+      validate: {
+        validator: (instructions: string[]) => instructions.length > 0,
+        message: "Must have at least one instruction",
+      },
+    },
+    recipeComments: [commentSchema],
   },
-});
+  {
+    timestamps: true,
+    toJSON: { getters: true },
+    toObject: { getters: true },
+  }
+);
+
+const Recipe = model<IRecipe>("Recipe", recipeSchema);
 
 export default Recipe;
