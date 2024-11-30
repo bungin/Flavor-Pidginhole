@@ -14,6 +14,8 @@ interface IRecipe extends Document {
   recipeIngredients: string[];
   recipeInstructions: string[];
   recipeComments: IComment[];
+  likesCount: number;
+  favoritesCount: number;
   createdAt: Date;
 }
 
@@ -75,6 +77,14 @@ const recipeSchema = new Schema<IRecipe>(
         validator: (instructions: string[]) => instructions.length > 0,
         message: "Must have at least one instruction",
       },
+    },
+    likesCount: {
+        type: Number,
+        default: 0,
+    },
+    favoritesCount: {
+        type: Number,
+        default: 0,
     },
     recipeComments: [commentSchema],
   },
