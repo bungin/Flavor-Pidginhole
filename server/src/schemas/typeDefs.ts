@@ -9,8 +9,12 @@ const typeDefs = `
 
   type Recipe {
     _id: ID
-    recipeText: String
     recipeAuthor: String
+    recipeDescription: String
+    recipeIngredients: [String]!
+    recipeInstructions: [String]!
+    likesCount: Int
+    favoritesCount: Int
     createdAt: String
     comments: [Comment]!
   }
