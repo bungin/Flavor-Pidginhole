@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -46,16 +46,26 @@ export const QUERY_SINGLE_RECIPE = gql`
 `;
 
 export const QUERY_ME = gql`
-  query me {
+  query Me {
     me {
       _id
-      username
       email
       recipes {
         _id
-        recipeText
-        recipeAuthor
+        comments {
+          _id
+          commentAuthor {
+            username
+          }
+          commentText
+          createdAt
+        }
         createdAt
+        favoritesCount
+        likesCount
+        recipeDescription
+        recipeIngredients
+        recipeInstructions
       }
     }
   }
