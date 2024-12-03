@@ -29,6 +29,7 @@ const typeDefs = `
   input RecipeInput {
     recipeText: String!
     recipeAuthor: String!
+    recipeIngredients: [String]!
   }
 
   input UserInput {
