@@ -13,9 +13,9 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="m-0">Techs</h1>
+            <h1 className="m-0">Flavor Pidginhole</h1>
           </Link>
-          <p className="m-0">Get into the mind of a programmer.</p>
+          <p className="m-0">What's on the menu?</p>
         </div>
         <div>
           {/* Checking if the user is logged in to conditionally render profile link and logout button */}
