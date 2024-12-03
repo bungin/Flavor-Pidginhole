@@ -5,7 +5,7 @@ interface Recipe {
   _id: string;
   recipeAuthor: string;
   createdAt: string;
-  recipeText: string;
+  recipeDescription: string;
 }
 
 interface RecipeListProps {
@@ -31,7 +31,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
               </span>
             </h4>
             <div className="card-body bg-light p-2">
-              <p>{recipe.recipeText}</p>
+              <p>{recipe.recipeDescription}</p>
             </div>
             {/* Create a link to this recipe's page to view its comments using `<Link>` component */}
             <Link
