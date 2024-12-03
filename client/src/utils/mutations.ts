@@ -30,6 +30,7 @@ export const ADD_RECIPE = gql`
       _id
       recipeText
       recipeAuthor
+      recipeIngredients
       createdAt
       comments {
         _id
