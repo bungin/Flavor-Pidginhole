@@ -28,14 +28,11 @@ export const ADD_RECIPE = gql`
   mutation AddRecipe($input: RecipeInput!) {
     addRecipe(input: $input) {
       _id
-      recipeText
+      recipeName
       recipeAuthor
       recipeIngredients
+      recipeInstructions
       createdAt
-      comments {
-        _id
-        commentText
-      }
     }
   }
 `;

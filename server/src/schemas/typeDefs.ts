@@ -9,11 +9,12 @@ const typeDefs = `
 
   type Recipe {
     _id: ID
-    recipeText: String
+    recipeName: String
     recipeAuthor: String
     createdAt: String
     comments: [Comment]!
     recipeIngredients: [String]
+    recipeInstructions: [String]
   }
 
   type Comment {
