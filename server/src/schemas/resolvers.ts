@@ -25,7 +25,8 @@ interface RecipeArgs {
 
 interface AddRecipeArgs {
   input:{
-    recipeText: string;
+    recipeName: string;
+    recipeDescription: string;
     recipeAuthor: string;
   }
 }

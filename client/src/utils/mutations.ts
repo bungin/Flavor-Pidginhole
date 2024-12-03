@@ -41,7 +41,8 @@ export const ADD_COMMENT = gql`
   mutation addComment($recipeId: ID!, $commentText: String!) {
     addComment(recipeId: $recipeId, commentText: $commentText) {
       _id
-      recipeText
+      recipeName
+      recipeDescription
       recipeAuthor
       createdAt
       comments {
