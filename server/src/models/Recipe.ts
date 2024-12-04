@@ -13,7 +13,7 @@ interface IRecipe extends Document {
   recipeDescription: string;
   recipeIngredients: string[];
   recipeInstructions: string[];
-  recipeComments: IComment[];
+  comments: IComment[];
   createdAt: Date;
 }
 
@@ -76,7 +76,7 @@ const recipeSchema = new Schema<IRecipe>(
         message: "Must have at least one instruction",
       },
     },
-    recipeComments: [commentSchema],
+    comments: [commentSchema],
   },
   {
     timestamps: true,

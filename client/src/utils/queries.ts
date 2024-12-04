@@ -32,6 +32,9 @@ export const QUERY_SINGLE_RECIPE = gql`
       _id
       recipeName
       recipeAuthor
+      recipeDescription
+      recipeIngredients
+      recipeInstructions
       createdAt
       comments {
         _id
