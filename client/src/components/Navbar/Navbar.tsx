@@ -30,13 +30,13 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
       {/* Links */}
       <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
         <li>
-          <Link to="/">Favorited</Link>
+          <Link to="/favorites">Favorites</Link>
         </li>
         <li>
-          <Link to="/about">My Feed</Link>
+          <Link to="/profile">Profile</Link>
         </li>
         <li>
-          <Link to="/contact">Create a Post</Link>
+          <Link to="/newpost">Create a Post</Link>
         </li>
       </ul>
     </nav>
