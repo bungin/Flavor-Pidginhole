@@ -7,15 +7,13 @@ import { QUERY_RECIPES, QUERY_ME } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
 
-interface Recipe {
-  recipeName: string;
-  recipeDescription: string;
-  recipeIngredients: string[];
-  recipeInstructions: string[];
-  recipeAuthor: string;
+import { Recipe } from "../../interfaces/Recipe";
+
+interface RecipeFormProps {
+  onAddRecipe: (recipe:Recipe) => void;
 }
 
-const RecipeForm = () => {
+const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
   //State for the recipe text
   const [recipe, setRecipe] = useState<Recipe>({
     recipeName: "",
@@ -34,6 +32,12 @@ const RecipeForm = () => {
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    const newRecipe = {
+      ...recipe,
+      recipeAuthor: Auth.getProfile().data.username,
+      _id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+    };
     try {
       await addRecipe({
         variables: {
@@ -42,6 +46,8 @@ const RecipeForm = () => {
           },
         },
       });
+
+      onAddRecipe(newRecipe);
 
       setRecipe({
         recipeName: "",
