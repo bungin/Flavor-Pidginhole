@@ -131,6 +131,38 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    addLike: async (_parent: any, { recipeId }: {recipeId: string}, context: any) => {
+      if (context.user) {
+        return Recipe.findOneAndUpdate(
+          { _id: recipeId },
+          {
+            $addToSet: {
+              recipeLikes: context.user._id,
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        )
+      }
+    },
+    removeLike: async (_parent: any, { recipeId }: {recipeId: string}, context: any) => {
+      if (context.user) {
+        return Recipe.findOneAndUpdate(
+          { _id: recipeId },
+          {
+            $pull: {
+              recipeLikes: context.user._id,
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        )
+      }
+    },
     removeRecipe: async (_parent: any, { recipeId }: RecipeArgs, context: any) => {
       if (context.user) {
         const recipe = await Recipe.findOneAndDelete({

@@ -59,6 +59,8 @@ const typeDefs = `
     addComment(recipeId: ID!, commentText: String!): Recipe
     removeRecipe(recipeId: ID!): Recipe
     removeComment(recipeId: ID!, commentId: ID!): Recipe
+    addLike(recipeId: ID!): Recipe
+    removeLike(recipeId: ID!): Recipe
   }
 `;
 

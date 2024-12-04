@@ -78,7 +78,7 @@ const recipeSchema = new Schema<IRecipe>(
       },
     },
     recipeComments: [commentSchema],
-    recipeLikes: [User],
+    recipeLikes: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   {
     timestamps: true,

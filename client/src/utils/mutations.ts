@@ -53,3 +53,15 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_LIKE = gql`
+  addLike(recipeId: $recipeId) {
+    _id
+  }
+`;
+
+export const REMOVE_LIKE = gql`
+  removeLike(recipeId: $recipeId) {
+    _id
+  }
+`;
