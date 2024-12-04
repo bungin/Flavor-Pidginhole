@@ -33,10 +33,11 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
           <Link to="/favorites">Favorites</Link>
         </li>
         <li>
-          <Link to="/profile">Profile</Link>
+          <Link to="/me">Profile</Link>
         </li>
         <li>
           <Link to="/newpost">Create a Post</Link>
+          {/* should be a plus sign like instagram */}
         </li>
       </ul>
     </nav>
