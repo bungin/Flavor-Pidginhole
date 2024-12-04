@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -21,6 +21,9 @@ export const QUERY_RECIPES = gql`
       _id
       recipeName
       recipeAuthor
+      recipeDescription
+      recipeIngredients
+      recipeInstructions
       createdAt
     }
   }
