@@ -15,6 +15,7 @@ const typeDefs = `
     comments: [Comment]!
     recipeIngredients: [String]
     recipeInstructions: [String]
+    recipeLikes: [User]
   }
 
   type Comment {
