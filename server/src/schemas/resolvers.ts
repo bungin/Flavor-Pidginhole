@@ -25,7 +25,8 @@ interface RecipeArgs {
 
 interface AddRecipeArgs {
   input:{
-    recipeText: string;
+    recipeName: string;
+    recipeDescription: string;
     recipeAuthor: string;
   }
 }
@@ -102,7 +103,7 @@ const resolvers = {
     },
     addRecipe: async (_parent: any, { input }: AddRecipeArgs, context: any) => {
       if (context.user) {
-        const recipe = await Recipe.create({ ...input });
+        const recipe = await Recipe.create({ ...input, recipeAuthor: context.user.username });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },

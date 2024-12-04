@@ -36,7 +36,7 @@ const SingleRecipe = () => {
             lineHeight: '1.5',
           }}
         >
-          {recipe.recipeText}
+          {recipe.recipeDescription}
         </blockquote>
       </div>
 

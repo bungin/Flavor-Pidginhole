@@ -1,12 +1,10 @@
-import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { Navigate, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 
-import RecipeForm from '../components/RecipeForm';
-import RecipeList from '../components/RecipeList';
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
 
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
-
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
+import Recipes from "../components/Recipe";
 
 const Profile = () => {
   const { username: userParam } = useParams();
@@ -16,7 +14,7 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
-  
+
   // This if condition checks if the user is logged in and if the logged-in user's username matches the userParam.
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     // If the condition is true, it navigates to the "/me" route, which is likely the user's profile page.
@@ -40,23 +38,19 @@ const Profile = () => {
     <div>
       <div className="flex-row justify-center mb-3">
         <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+          Viewing {userParam ? `${user.username}'s` : "your"} profile.
         </h2>
 
         <div className="col-12 col-md-10 mb-5">
-          <RecipeList
-            recipes={user.recipes}
-            title={`${user.username}'s recipes...`}
-          />
+          {!userParam && (
+            <div
+              className="col-12 col-md-10 mb-3 p-3"
+              style={{ border: "1px dotted #1a1a1a" }}
+            >
+              <Recipes recipes={user.recipes} />
+            </div>
+          )}
         </div>
-        {!userParam && (
-          <div
-            className="col-12 col-md-10 mb-3 p-3"
-            style={{ border: '1px dotted #1a1a1a' }}
-          >
-            <RecipeForm />
-          </div>
-        )}
       </div>
     </div>
   );

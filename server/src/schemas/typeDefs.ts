@@ -9,10 +9,13 @@ const typeDefs = `
 
   type Recipe {
     _id: ID
-    recipeText: String
+    recipeName: String
     recipeAuthor: String
     createdAt: String
     comments: [Comment]!
+    recipeIngredients: [String]
+    recipeInstructions: [String]
+    recipeDescription: String
   }
 
   type Comment {
@@ -23,7 +26,10 @@ const typeDefs = `
   }
 
   input RecipeInput {
-    recipeText: String!
+    recipeName: String!
+    recipeDescription: String!
+    recipeIngredients: [String!]!
+    recipeInstructions: [String!]!
     recipeAuthor: String!
   }
 
