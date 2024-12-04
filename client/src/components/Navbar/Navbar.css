@@ -1,0 +1,67 @@
+/* Basic Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger .bar {
+  width: 30px;
+  height: 4px;
+  background-color: #333;
+  border-radius: 10px;
+}
+
+.navbar.open .nav-links {
+  display: block;
+  position: absolute;
+  top: 60px; /* Adjust to your navbar height */
+  right: 0;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+}
+
+.nav-links.show {
+  display: block;
+}
+
+/* Show the hamburger button on small screens */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-links.show {
+    display: block;
+  }
+}
