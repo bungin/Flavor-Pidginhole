@@ -14,6 +14,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
     setIsMenuOpen((prev) => !prev);
   };
 
+  
   return (
     <nav className={`navbar ${isMenuOpen ? 'open' : ''}`}>
       <div className="logo">
@@ -28,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
       </button>
 
      {/* Links */}
-     <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
+      <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
         {/* Home link */}
         <li>
           <Link to="/">Home</Link>
@@ -40,9 +41,12 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
         <li>
           <Link to="/me">Profile</Link>
         </li>
-        <li>
-          <Link to="/newpost">Create a Post</Link>
-          {/* should be a plus sign like Instagram */}
+        <li className="create-post">
+          <Link to="/newpost">
+            <button className="plus-button" aria-label="Create a Post">
+              <span className="plus-icon">+</span>
+            </button>
+          </Link>
         </li>
       </ul>
     </nav>
