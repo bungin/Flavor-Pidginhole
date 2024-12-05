@@ -24,6 +24,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
               </span>
             </h4>
             <div className="card-body bg-light p-2">
+              <h5 className="card-title">{recipe.recipeName}</h5>
               <p>{recipe.recipeDescription}</p>
             </div>
             {/* Create a link to this recipe's page to view its comments using `<Link>` component */}
@@ -31,7 +32,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
               className="btn btn-primary btn-block btn-squared"
               to={`/recipes/${recipe._id}`}
             >
-              Join the discussion on this recipe.
+              View Recipe
             </Link>
           </div>
         ))}
