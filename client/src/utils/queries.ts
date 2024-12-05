@@ -25,8 +25,15 @@ export const QUERY_RECIPES = gql`
       recipeIngredients
       recipeInstructions
       createdAt
+      comments {
+        _id
+        commentText
+        commentAuthor {
+          username
+        }
     }
   }
+}
 `;
 
 export const QUERY_SINGLE_RECIPE = gql`
