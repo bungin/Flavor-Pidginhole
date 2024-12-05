@@ -1396,6 +1396,48 @@ label form [type='radio'] {
   flex: 0 0 100%;
   max-width: 100%;
 }
+.recipe-page {
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.recipe-hero {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recipe-hero img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.recipe-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ingredients,
+.instructions {
+  flex: 1;
+  min-width: 300px;
+}
+
+.ingredients ul,
+.instructions ol {
+  padding-left: 20px;
+}
+
+.recipe-comments {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+
 
 /* col-sm */
 @media screen and (min-width: 640px) {
