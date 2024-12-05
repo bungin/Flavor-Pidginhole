@@ -162,9 +162,9 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                   onChange={handleChange}
                 ></textarea>
               </div>
-
+              <div className="column-container">
               {/* Ingredients */}
-              <div className="col-12">
+              <div className="column">
                 <h4>Ingredients</h4>
                 {recipe.recipeIngredients.map((ingredient, index) => {
                   return (
@@ -183,9 +183,9 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                       <button
                         type="button"
                         onClick={() => handleRemoveIngredient(index)}
-                        className="btn btn-danger btn-sm ml-2"
+                        className="btn btn-danger"
                       >
-                        Remove
+                        -
                       </button>
                     </div>
                   );
@@ -193,20 +193,20 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                 <button
                   type="button"
                   onClick={handleAddIngredient}
-                  className="btn btn-secondary btn-sm mt-2"
+                  className="btn btn-secondary mt-2"
                 >
                   Add Ingredient
                 </button>
               </div>
 
               {/* Instructions */}
-              <div className="col-12">
+              <div className="column">
                 <h4>Instructions</h4>
                 {recipe.recipeInstructions.map((instruction, index) => {
                   return (
                     <div
                       key={index}
-                      className="flex-row justify-space-between my-2"
+                      className="flex-row my-2"
                     >
                       <input
                         type="text"
@@ -219,9 +219,9 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                       <button
                         type="button"
                         onClick={() => handleRemoveInstruction(index)}
-                        className="btn btn-danger btn-sm ml-2"
+                        className="btn btn-danger"
                       >
-                        Remove
+                        -
                       </button>
                     </div>
                   );
@@ -229,12 +229,12 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                 <button
                   type="button"
                   onClick={handleAddInstruction}
-                  className="btn btn-secondary btn-sm mt-2"
+                  className="btn btn-secondary mt-2"
                 >
                   Add Instruction
                 </button>
               </div>
-                
+                </div>
                 {/* Submit */}
               <div className="col-12 col-lg-3">
                 <button
