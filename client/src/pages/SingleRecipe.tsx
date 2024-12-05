@@ -1,10 +1,10 @@
-import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 
-import CommentList from '../components/CommentList/index.tsx';
-import CommentForm from '../components/CommentForm/index.tsx';
+import CommentList from "../components/CommentList/index.tsx";
+import CommentForm from "../components/CommentForm/index.tsx";
 
-import { QUERY_SINGLE_RECIPE } from '../utils/queries.ts';
+import { QUERY_SINGLE_RECIPE } from "../utils/queries.ts";
 
 const SingleRecipe = () => {
   const { recipeId } = useParams();
@@ -18,32 +18,49 @@ const SingleRecipe = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
+
   return (
-    <div className="my-3">
-      <h3 className="card-header bg-dark text-light p-2 m-0">
-        {recipe.recipeAuthor} <br />
-        <span style={{ fontSize: '1rem' }}>
-          had this recipe on {new Date(Number(recipe.createdAt)).toLocaleString()}
-        </span>
-      </h3>
-      <div className="bg-light py-4">
-        <blockquote
-          className="p-4"
-          style={{
-            fontSize: '1.5rem',
-            fontStyle: 'italic',
-            border: '2px dotted #1a1a1a',
-            lineHeight: '1.5',
-          }}
-        >
-          {recipe.recipeDescription}
-        </blockquote>
+    <div className="recipe-page">
+      {/* Hero Section */}
+      <div className="recipe-hero">
+        <h1>{recipe.recipeName}</h1>
+        <p>
+          By <strong>{recipe.recipeAuthor}</strong> on{" "}
+          {new Date(Number(recipe.createdAt)).toLocaleDateString()}
+        </p>
+        {/* {recipe.image && (
+          <img
+            src={recipe.image}
+            alt={recipe.recipeTitle}
+            className="recipe-image"
+          />
+        )} */}
+      </div>
+      <div><p>{recipe.recipeDescription}</p></div>
+      {/* Ingredients & Instructions */}
+      <div className="recipe-details">
+        <div className="ingredients">
+          <h2>Ingredients</h2>
+          <ul>
+            {recipe.recipeIngredients.map((ingredient: string, index: number) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="instructions">
+          <h2>Instructions</h2>
+          <ol>
+            {recipe.recipeInstructions.map((instruction:string, index:number) => (
+              <li key={index}>{instruction}</li>
+            ))}
+          </ol>
+        </div>
       </div>
 
-      <div className="my-5">
+      {/* Comments Section */}
+      <div className="recipe-comments">
         <CommentList comments={recipe.comments} />
-      </div>
-      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
         <CommentForm recipeId={recipe._id} />
       </div>
     </div>
