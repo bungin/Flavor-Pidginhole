@@ -27,8 +27,13 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
         <span className="bar"></span>
       </button>
 
-      {/* Links */}
-      <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
+     {/* Links */}
+     <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
+        {/* Home link */}
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        
         <li>
           <Link to="/favorites">Favorites</Link>
         </li>
@@ -37,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
         </li>
         <li>
           <Link to="/newpost">Create a Post</Link>
-          {/* should be a plus sign like instagram */}
+          {/* should be a plus sign like Instagram */}
         </li>
       </ul>
     </nav>
