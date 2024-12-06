@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Navbar.css'; 
 import Logo from '../../../../assets/Production Vision/Logo.png'
 
+
+
 interface NavbarProps {
   logo: string;
 }
