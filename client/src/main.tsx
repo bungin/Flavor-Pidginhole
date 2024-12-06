@@ -10,6 +10,7 @@ import SingleRecipe from './pages/SingleRecipe.js';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
 
+
 const router = createBrowserRouter([
   {
     path: "/",
