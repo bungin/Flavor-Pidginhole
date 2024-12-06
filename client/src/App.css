@@ -969,7 +969,14 @@ a:hover {
 
 /* BACKGROUND UTILS */
 .bg-primary {
-  background-color: #fbb02d !important;
+  /* background-color: #fbb02d !important; */
+  background: rgb(92, 128, 1);
+  background: linear-gradient(
+    90deg,
+    rgba(92, 128, 1, 1) 0%,
+    rgba(102, 153, 204, 1) 42%,
+    rgba(252, 176, 69, 1) 86%
+  );
 }
 
 .bg-info {
