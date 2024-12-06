@@ -50,7 +50,9 @@ const resolvers = {
       return User.findOne({ username }).populate("recipes");
     },
     recipes: async () => {
-      return await Recipe.find().sort({ createdAt: -1 });
+      const recipes = await Recipe.find().sort({ createdAt: -1 });
+      console.log(recipes)
+      return recipes
     },
     recipe: async (_parent: any, { recipeId }: RecipeArgs) => {
       return await Recipe.findOne({ _id: recipeId }).populate({
@@ -113,7 +115,8 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { recipes: recipe._id } }
+          { $addToSet: { recipes: recipe._id } },
+          {new: true}
         );
 
         return recipe;
