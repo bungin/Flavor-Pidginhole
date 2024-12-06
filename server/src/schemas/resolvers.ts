@@ -51,7 +51,6 @@ const resolvers = {
     },
     recipes: async () => {
       const recipes = await Recipe.find().sort({ createdAt: -1 });
-      console.log(recipes)
       return recipes
     },
     recipe: async (_parent: any, { recipeId }: RecipeArgs) => {
