@@ -2,10 +2,11 @@
   display: flex;
   align-items: center; /* Align the title and button vertically */
   justify-content: flex-start; /* Align items to the left */
+  gap: 20px; /* Add space between the title and button */
 }
 
 .header h1 {
-  flex-grow: 1; /* Make the <h1> take up available space */
+  /* flex-grow: 1; Make the <h1> take up available space */
   margin: 0; /* Remove default margin */
 }
 
