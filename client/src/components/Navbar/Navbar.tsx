@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'; 
+import Logo from '../../../../assets/Production Vision/Logo.png'
 
 interface NavbarProps {
   logo: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ logo }) => {
+const Navbar: React.FC<NavbarProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
@@ -14,10 +15,11 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
     setIsMenuOpen((prev) => !prev);
   };
 
+  
   return (
     <nav className={`navbar ${isMenuOpen ? 'open' : ''}`}>
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <img src={Logo} alt="Logo" />
       </div>
 
       {/* Hamburger menu button */}
@@ -27,17 +29,25 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
         <span className="bar"></span>
       </button>
 
-      {/* Links */}
+     {/* Links */}
       <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
+        {/* Home link */}
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        
         <li>
           <Link to="/favorites">Favorites</Link>
         </li>
         <li>
           <Link to="/me">Profile</Link>
         </li>
-        <li>
-          <Link to="/newpost">Create a Post</Link>
-          {/* should be a plus sign like instagram */}
+        <li className="create-post">
+          <Link to="/newpost">
+            <button className="plus-button" aria-label="Create a Post">
+              <span className="plus-icon">+</span>
+            </button>
+          </Link>
         </li>
       </ul>
     </nav>
