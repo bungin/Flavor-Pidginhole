@@ -1,7 +1,7 @@
 export interface Recipe {
     _id?: string;
     recipeAuthor: string;
-    createdAt?: string;
+    createdAt?: Date;
     recipeDescription: string;
     recipeName: string;
     recipeIngredients: string[];
