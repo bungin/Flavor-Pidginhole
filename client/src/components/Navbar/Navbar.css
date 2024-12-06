@@ -4,7 +4,13 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #6699cc;
+  background-color: rgb(92, 128, 1);
+  background: linear-gradient(
+    90deg,
+    rgba(92, 128, 1, 1) 0%,
+    rgba(102, 153, 204, 1) 42%,
+    rgba(252, 176, 69, 1) 86%
+  );
   position: relative;
 }
 

@@ -19,6 +19,7 @@ export const QUERY_RECIPES = gql`
   query getRecipes {
     recipes {
       _id
+      createdAt
       recipeAuthor
       recipeDescription
       recipeIngredients
