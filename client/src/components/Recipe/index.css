@@ -6,6 +6,7 @@
 }
 
 .header h1 {
+  /* flex-grow: 1; Make the <h1> take up available space */
   margin: 0; /* Remove default margin */
 }
 
