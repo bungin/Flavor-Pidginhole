@@ -44,7 +44,7 @@ const LikeButton = ({ recipeId, recipeLikes }: any) => {
             {!recipeLikes.find((l: any) => l._id === data?.me?._id) && <button onClick={handleLike}>Like this recipe!</button>}
             {recipeLikes.find((l: any) => l._id === data?.me?._id) && (
                 <button onClick={handleRemoveLike}>Unlike this recipe!</button>
-            )}
+            )} {recipeLikes.length}
         </div>
     );
 };
