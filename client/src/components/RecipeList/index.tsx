@@ -36,7 +36,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
             >
               View Recipe
             </Link>
-            <LikeButton recipeId={recipe._id} />
+            <LikeButton recipeId={recipe._id} recipeLikes={recipe.recipeLikes} />
           </div>
         ))}
     </div>

@@ -1,12 +1,9 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
 import { ADD_LIKE, REMOVE_LIKE } from "../../utils/mutations";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME } from "../../utils/queries";
+import { QUERY_ME, QUERY_RECIPES } from "../../utils/queries";
 
-const LikeButton = ({ recipeId }: any) => {
-    const [isLiked, setIsLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(0);
+const LikeButton = ({ recipeId, recipeLikes }: any) => {
     const [addLike] = useMutation(ADD_LIKE);
     const [removeLike] = useMutation(REMOVE_LIKE);
     const { data } = useQuery(QUERY_ME);
@@ -20,9 +17,8 @@ const LikeButton = ({ recipeId }: any) => {
             try {
                 await addLike({
                     variables: { recipeId, userId },
+                    refetchQueries: [{ query: QUERY_RECIPES }],
                 });
-                setIsLiked(true);
-                setLikeCount(likeCount + 1);
             } catch (err) {
                 console.error(err);
             }
@@ -35,9 +31,8 @@ const LikeButton = ({ recipeId }: any) => {
             try {
                 await removeLike({
                     variables: { recipeId, userId },
+                    refetchQueries: [{ query: QUERY_RECIPES }],
                 });
-                setIsLiked(false);
-                setLikeCount(likeCount - 1);
             } catch (err) {
                 console.error(err);
             }
@@ -46,8 +41,8 @@ const LikeButton = ({ recipeId }: any) => {
 
     return (
         <div>
-            {!isLiked && <button onClick={handleLike}>Like this recipe!</button>}
-            {isLiked && (
+            {!recipeLikes.find((l: any) => l._id === data?.me?._id) && <button onClick={handleLike}>Like this recipe!</button>}
+            {recipeLikes.find((l: any) => l._id === data?.me?._id) && (
                 <button onClick={handleRemoveLike}>Unlike this recipe!</button>
             )}
         </div>
