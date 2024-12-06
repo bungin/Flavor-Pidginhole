@@ -19,6 +19,8 @@
  */
 body {
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  padding:20px;
 }
 
 /**
@@ -163,6 +165,28 @@ textarea {
   /* 2 */
 }
 
+textarea[name="recipeName"] {
+  width: 100%;
+  max-width: 400px;
+  height: 2.5rem;
+  line-height: 1.5;
+  resize: none;
+}
+
+textarea[name="recipeDescription"] {
+  width: 100%;
+  height: 4rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+input[type="text"] {
+  flex: 1; /* Adjust for remove button width */
+  padding: 5px;
+  min-width: 200px;
+  max-width: 100px;
+}
+
 /**
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.
@@ -172,6 +196,15 @@ input {
   /* 1 */
   overflow: visible;
 }
+
+button {
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 
 /**
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
@@ -266,6 +299,23 @@ textarea {
   /* 1 */
   padding: 0;
   /* 2 */
+}
+
+button.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+button.btn-secondary {
+  background-color: #3498db;
+  color: white;
+}
+
+button.btn-primary {
+  background-color: #2ecc71;
+  color: white;
+  width: 100%;
+  padding: 10px;
 }
 
 /**
@@ -989,6 +1039,7 @@ a:hover {
 
 .btn:hover {
   background-color: #cecece;
+  opacity: .9;
 }
 
 .btn.btn-squared {
@@ -1014,6 +1065,8 @@ a:hover {
 .btn.btn-primary {
   background-color: #2d3e50;
   color: #d9e9e8;
+  width: 100%;
+  padding: 10px;
 }
 
 .btn.btn-primary:hover {
@@ -1113,6 +1166,8 @@ a:hover {
 
 form {
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 form .form-group {
@@ -1183,12 +1238,23 @@ label form [type='radio'] {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  gap:10px;
 }
 
 .flex-column {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+}
+
+.column-container {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  flex: 1;
+  min-width: 300px;
 }
 
 .flex-wrap {
@@ -1330,6 +1396,48 @@ label form [type='radio'] {
   flex: 0 0 100%;
   max-width: 100%;
 }
+.recipe-page {
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.recipe-hero {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recipe-hero img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.recipe-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ingredients,
+.instructions {
+  flex: 1;
+  min-width: 300px;
+}
+
+.ingredients ul,
+.instructions ol {
+  padding-left: 20px;
+}
+
+.recipe-comments {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+
 
 /* col-sm */
 @media screen and (min-width: 640px) {
@@ -1423,6 +1531,18 @@ label form [type='radio'] {
   }
   .align-content-center-sm {
     align-content: center;
+  }
+  .recipe-hero {
+    text-align: left;
+  }
+
+  .recipe-hero img {
+    margin: 20px auto;
+    border: 3px solid #ddd;
+  }
+
+  .recipe-details {
+    gap: 30px;
   }
 }
 
@@ -1519,6 +1639,22 @@ label form [type='radio'] {
   .align-content-center-md {
     align-content: center;
   }
+  .recipe-page {
+    max-width: 900px;
+  }
+
+  .recipe-hero h1 {
+    font-size: 2rem;
+  }
+
+  .recipe-hero img {
+    max-width: 700px;
+  }
+
+  .ingredients,
+  .instructions {
+    min-width: 350px;
+  }
 }
 
 /* col-lg */
@@ -1614,6 +1750,22 @@ label form [type='radio'] {
   .align-content-center-lg {
     align-content: center;
   }
+  .recipe-page {
+    max-width: 1100px;
+  }
+
+  .recipe-hero img {
+    max-width: 800px;
+  }
+
+  .recipe-details {
+    gap: 40px;
+  }
+
+  .ingredients,
+  .instructions {
+    min-width: 400px;
+  }
 }
 
 /* col-xl */
@@ -1704,5 +1856,26 @@ label form [type='radio'] {
   }
   .align-content-center-xl {
     align-content: center;
+  }
+  .recipe-page {
+    max-width: 1200px;
+  }
+
+  .recipe-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .recipe-hero img {
+    max-width: 100%;
+    border-radius: 15px;
+  }
+
+  .recipe-details {
+    gap: 50px;
+  }
+
+  .ingredients,
+  .instructions {
+    min-width: 450px;
   }
 }

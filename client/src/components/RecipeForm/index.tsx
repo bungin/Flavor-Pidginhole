@@ -7,15 +7,13 @@ import { QUERY_RECIPES, QUERY_ME } from "../../utils/queries";
 
 import Auth from "../../utils/auth";
 
-interface Recipe {
-  recipeName: string;
-  recipeDescription: string;
-  recipeIngredients: string[];
-  recipeInstructions: string[];
-  recipeAuthor: string;
+import { Recipe } from "../../interfaces/Recipe";
+
+interface RecipeFormProps {
+  onAddRecipe: (recipe:Recipe) => void;
 }
 
-const RecipeForm = () => {
+const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
   //State for the recipe text
   const [recipe, setRecipe] = useState<Recipe>({
     recipeName: "",
@@ -34,6 +32,12 @@ const RecipeForm = () => {
   const handleFormSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    const newRecipe = {
+      ...recipe,
+      recipeAuthor: Auth.getProfile().data.username,
+      _id: Date.now().toString(),
+      createdAt: new Date().toISOString(),
+    };
     try {
       await addRecipe({
         variables: {
@@ -42,6 +46,8 @@ const RecipeForm = () => {
           },
         },
       });
+
+      onAddRecipe(newRecipe);
 
       setRecipe({
         recipeName: "",
@@ -156,9 +162,9 @@ const RecipeForm = () => {
                   onChange={handleChange}
                 ></textarea>
               </div>
-
+              <div className="column-container">
               {/* Ingredients */}
-              <div className="col-12">
+              <div className="column">
                 <h4>Ingredients</h4>
                 {recipe.recipeIngredients.map((ingredient, index) => {
                   return (
@@ -177,9 +183,9 @@ const RecipeForm = () => {
                       <button
                         type="button"
                         onClick={() => handleRemoveIngredient(index)}
-                        className="btn btn-danger btn-sm ml-2"
+                        className="btn btn-danger"
                       >
-                        Remove
+                        -
                       </button>
                     </div>
                   );
@@ -187,20 +193,20 @@ const RecipeForm = () => {
                 <button
                   type="button"
                   onClick={handleAddIngredient}
-                  className="btn btn-secondary btn-sm mt-2"
+                  className="btn btn-secondary mt-2"
                 >
                   Add Ingredient
                 </button>
               </div>
 
               {/* Instructions */}
-              <div className="col-12">
+              <div className="column">
                 <h4>Instructions</h4>
                 {recipe.recipeInstructions.map((instruction, index) => {
                   return (
                     <div
                       key={index}
-                      className="flex-row justify-space-between my-2"
+                      className="flex-row my-2"
                     >
                       <input
                         type="text"
@@ -213,9 +219,9 @@ const RecipeForm = () => {
                       <button
                         type="button"
                         onClick={() => handleRemoveInstruction(index)}
-                        className="btn btn-danger btn-sm ml-2"
+                        className="btn btn-danger"
                       >
-                        Remove
+                        -
                       </button>
                     </div>
                   );
@@ -223,12 +229,12 @@ const RecipeForm = () => {
                 <button
                   type="button"
                   onClick={handleAddInstruction}
-                  className="btn btn-secondary btn-sm mt-2"
+                  className="btn btn-secondary mt-2"
                 >
                   Add Instruction
                 </button>
               </div>
-                
+                </div>
                 {/* Submit */}
               <div className="col-12 col-lg-3">
                 <button
