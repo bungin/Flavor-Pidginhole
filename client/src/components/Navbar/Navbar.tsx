@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'; 
+import Logo from '../../../../assets/Production Vision/Logo.png'
 
 
 
@@ -8,7 +9,7 @@ interface NavbarProps {
   logo: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ logo }) => {
+const Navbar: React.FC<NavbarProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
@@ -20,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo }) => {
   return (
     <nav className={`navbar ${isMenuOpen ? 'open' : ''}`}>
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <img src={Logo} alt="Logo" />
       </div>
 
       {/* Hamburger menu button */}
