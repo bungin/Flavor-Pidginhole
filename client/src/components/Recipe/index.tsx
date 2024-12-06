@@ -23,7 +23,7 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
   return (
     <div>
       <div className="header">
-        {/* <h1>My Recipe App</h1> */}
+        <h1>Create a Post</h1>
         <button 
           className="plus-button" 
           aria-label="Create a Post" 

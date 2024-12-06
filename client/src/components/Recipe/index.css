@@ -10,7 +10,7 @@
 }
 
 .plus-button {
-  background-color: #6699cc;
+  background-color: #f0f0f0;
   border: none;
   color: white;
   padding: 25px 30px;
@@ -24,7 +24,7 @@
 }
 
 .plus-button:hover {
-  background-color: #f3de2c; /* Button hover color */
+  background-color: #dbdbd9; /* Button hover color */
   transform: scale(1.1); /* Slightly enlarge the button on hover */
 }
 
@@ -45,5 +45,5 @@
 }
 
 .plus-icon {
-  font-size: 30px; /* Adjust icon size */
+  font-size: 25px; /* Adjust icon size */
 }
