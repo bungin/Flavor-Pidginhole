@@ -19,21 +19,24 @@ export const QUERY_RECIPES = gql`
   query getRecipes {
     recipes {
       _id
-      recipeName
       recipeAuthor
       recipeDescription
       recipeIngredients
       recipeInstructions
-      createdAt
+      recipeName
+      recipeLikes {
+        _id
+      }
       comments {
         _id
         commentText
+        createdAt
         commentAuthor {
-          username
+          _id
         }
+      }
     }
   }
-}
 `;
 
 export const QUERY_SINGLE_RECIPE = gql`
