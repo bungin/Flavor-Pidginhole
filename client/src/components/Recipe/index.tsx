@@ -29,7 +29,8 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
           aria-label="Create a Post" 
           onClick={toggleForm}  // Toggle the visibility of RecipeForm
         >
-          <span className="plus-icon">+</span>
+          <span className="plus-icon">	
+          &#128993;</span>
         </button>
       </div>
 
