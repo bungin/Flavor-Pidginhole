@@ -1082,21 +1082,21 @@ a:hover {
 }
 
 .btn.btn-info {
-  background-color: #1bbc9b;
+  background-color: #f3de2c;
   color: #ffffff;
 }
 
 .btn.btn-info:hover {
-  background-color: #31e1bd;
+  background-color: #6699cc;
 }
 
 .btn.btn-light {
-  background-color: #d9e9e8;
+  background-color: #6699cc;
   color: #1a1a1a;
 }
 
 .btn.btn-light:hover {
-  background-color: #84b8b4;
+  background-color: #f3de2c;
 }
 
 .btn.btn-dark {
