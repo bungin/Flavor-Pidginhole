@@ -7,5 +7,5 @@ export interface Recipe {
     recipeIngredients: string[];
     recipeInstructions: string[];
     recipeLikes: {_id: string[]}[];
-  }
+  };
 
