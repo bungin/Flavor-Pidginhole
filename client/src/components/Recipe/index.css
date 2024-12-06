@@ -6,12 +6,11 @@
 }
 
 .header h1 {
-  /* flex-grow: 1; Make the <h1> take up available space */
   margin: 0; /* Remove default margin */
 }
 
 .plus-button {
-  background-color: #6699cc; /* Example button color */
+  background-color: #6699cc;
   border: none;
   color: white;
   padding: 20px 25px;
