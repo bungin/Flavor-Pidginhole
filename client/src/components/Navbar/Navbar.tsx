@@ -42,12 +42,8 @@ const Navbar: React.FC<NavbarProps> = () => {
         <li>
           <Link to="/me">Profile</Link>
         </li>
-        <li className="create-post">
-          <Link to="/newpost">
-            <button className="plus-button" aria-label="Create a Post">
-              <span className="plus-icon">+</span>
-            </button>
-          </Link>
+        <li>
+          
         </li>
       </ul>
     </nav>
