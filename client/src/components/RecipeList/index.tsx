@@ -1,6 +1,7 @@
 // Import `<Link>` component from React Router for internal hyperlinks
-import { Link } from 'react-router-dom';
-import { Recipe } from '../../interfaces/Recipe';
+import { Link } from "react-router-dom";
+import { Recipe } from "../../interfaces/Recipe";
+import LikeButton from "../LikeButton";
 interface RecipeListProps {
   recipes: Recipe[];
   title: string;
@@ -10,7 +11,6 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
   if (!recipes.length) {
     return <h3>No recipes Yet</h3>;
   }
-
   return (
     <div>
       <h3>{title}</h3>
@@ -19,8 +19,10 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
           <div key={recipe._id} className="card mb-3">
             <h4 className="card-header bg-primary text-light p-2 m-0">
               {recipe.recipeAuthor} <br />
-              <span style={{ fontSize: '1rem' }}>
-                posted this recipe on {new Date(Number(recipe.createdAt)).toLocaleString()}
+              <span style={{ fontSize: "1rem" }}>
+                posted this recipe on{" "}
+                {}
+                {recipe.createdAt? new Date(parseInt(recipe.createdAt)).toLocaleDateString(): ""}
               </span>
             </h4>
             <div className="card-body bg-light p-2">
@@ -34,6 +36,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
             >
               View Recipe
             </Link>
+            <LikeButton recipeId={recipe._id} recipeLikes={recipe.recipeLikes} />
           </div>
         ))}
     </div>

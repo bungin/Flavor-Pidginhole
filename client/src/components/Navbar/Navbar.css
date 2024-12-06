@@ -1,67 +1,146 @@
-/* Basic Navbar Styles */
+/* Basic navbar styles */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
+  background-color: rgb(92, 128, 1);
+  background: linear-gradient(
+    90deg,
+    rgba(92, 128, 1, 1) 0%,
+    rgba(102, 153, 204, 1) 42%,
+    rgba(252, 176, 69, 1) 86%
+  );
   position: relative;
 }
 
-.nav-links {
-  display: flex;
-  list-style: none;
-  padding: 0;
-}
-
-.nav-links li {
-  margin: 0 15px;
+.logo img {
+  height: 50px;
 }
 
 .hamburger {
   display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 30px;
-  height: 30px;
   background: none;
   border: none;
   cursor: pointer;
 }
 
 .hamburger .bar {
-  width: 30px;
-  height: 4px;
-  background-color: #333;
-  border-radius: 10px;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  margin: 5px;
+  transition: all 0.3s ease;
 }
 
-.navbar.open .nav-links {
+/* Hamburger icon transformation when open */
+.navbar.open .hamburger .bar:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.navbar.open .hamburger .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar.open .hamburger .bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Navbar links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: #fff275;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect on links */
+.nav-links a:hover {
+  color: #ff8c42; /* Change color on hover */
+  transform: scale(1.1); /* Slightly scale up the link */
+  box-shadow: 0px 4px 8px rgba(245, 195, 78, 0.4); /* Add box-shadow effect */
+}
+
+/* Create Post button (Floating "+" button) */
+.create-post {
+  margin-left: auto; /* Push the plus button to the right */
+}
+
+.plus-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff275; /* Color of the plus button */
+  border: none;
+  color: #ff8c42;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect on the floating plus button */
+.plus-button:hover {
+  background-color: #5b8e7d; /* Slightly darker shade on hover */
+  transform: scale(1.1); /* Slightly increase the size of the button */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a shadow to make the button 'pop' */
+}
+
+/* Icon inside the plus button */
+.plus-icon {
+  font-size: 35px; /* Size of the "+" sign */
+  line-height: 0;
+}
+
+/* Mobile menu toggle */
+.nav-links.show {
   display: block;
   position: absolute;
-  top: 60px; /* Adjust to your navbar height */
+  top: 60px;
   right: 0;
-  background-color: #fff;
-  width: 100%;
+  background-color: #333;
+  width: 200px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.nav-links.show li {
+  padding: 10px 0;
   text-align: center;
 }
 
-.nav-links.show {
-  display: block;
+.nav-links.show a {
+  font-size: 20px;
+  color: white;
 }
 
-/* Show the hamburger button on small screens */
 @media (max-width: 768px) {
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links {
+  .navbar .nav-links {
     display: none;
     flex-direction: column;
-    width: 100%;
   }
 
-  .nav-links.show {
+  .hamburger {
     display: block;
+  }
+
+  /* Styling for the floating button on mobile */
+  .create-post {
+    margin-left: 0;
+    margin-top: 1rem;
   }
 }
