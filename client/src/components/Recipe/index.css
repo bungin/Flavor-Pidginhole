@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  align-items: center; /* Align the title and button vertically */
+  justify-content: flex-start; /* Align items to the left */
+}
+
+.header h1 {
+  flex-grow: 1; /* Make the <h1> take up available space */
+  margin: 0; /* Remove default margin */
+}
+
+.plus-button {
+  background-color: #6699cc; /* Example button color */
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.plus-button:hover {
+  background-color: #f3de2c; /* Button hover color */
+}
+
+.plus-icon {
+  font-size: 20px; /* Adjust icon size */
+}
