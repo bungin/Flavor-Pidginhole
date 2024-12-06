@@ -11,7 +11,6 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
   if (!recipes.length) {
     return <h3>No recipes Yet</h3>;
   }
-
   return (
     <div>
       <h3>{title}</h3>
@@ -22,7 +21,8 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
               {recipe.recipeAuthor} <br />
               <span style={{ fontSize: "1rem" }}>
                 posted this recipe on{" "}
-                {new Date(Number(recipe.createdAt)).toLocaleString()}
+                {}
+                {recipe.createdAt? new Date(parseInt(recipe.createdAt)).toLocaleDateString(): ""}
               </span>
             </h4>
             <div className="card-body bg-light p-2">
