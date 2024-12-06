@@ -15,6 +15,7 @@ const typeDefs = `
     comments: [Comment]!
     recipeIngredients: [String]
     recipeInstructions: [String]
+    recipeLikes: [User]
     recipeDescription: String
   }
 
@@ -59,6 +60,8 @@ const typeDefs = `
     addComment(recipeId: ID!, commentText: String!): Recipe
     removeRecipe(recipeId: ID!): Recipe
     removeComment(recipeId: ID!, commentId: ID!): Recipe
+    addLike(recipeId: ID!): Recipe
+    removeLike(recipeId: ID!): Recipe
   }
 `;
 
