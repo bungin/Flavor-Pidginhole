@@ -13,7 +13,7 @@
   background-color: #6699cc; /* Example button color */
   border: none;
   color: white;
-  padding: 10px 15px;
+  padding: 20px 25px;
   font-size: 20px;
   cursor: pointer;
   border-radius: 5px;
@@ -24,5 +24,5 @@
 }
 
 .plus-icon {
-  font-size: 20px; /* Adjust icon size */
+  font-size: 30px; /* Adjust icon size */
 }
