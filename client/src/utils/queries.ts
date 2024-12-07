@@ -83,8 +83,6 @@ export const QUERY_FAVORITES = gql`
     favorites(recipeId: $recipeId) {
       _id
       recipeName
-      recipeAuthor
-      recipeDescription
     }
   }
 `;

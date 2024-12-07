@@ -41,6 +41,16 @@ interface RemoveCommentArgs {
   commentId: string;
 }
 
+// interface addFavoriteArgs {
+//   recipeId: string;
+//   recipeName: string;
+// }
+//                      shouldnt need these....
+// interface removeFavoriteArgs {
+//   recipeId: string;
+//   recipeName: string;
+// }
+
 const resolvers = {
   Query: {
     users: async () => {
@@ -225,8 +235,7 @@ const resolvers = {
       return null;
     },
     removeRecipe: async (
-      _parent: any,
-      { recipeId }: RecipeArgs,
+      _parent: any, { recipeId }: RecipeArgs,
       context: any
     ) => {
       if (context.user) {
@@ -249,8 +258,7 @@ const resolvers = {
       throw AuthenticationError;
     },
     removeComment: async (
-      _parent: any,
-      { recipeId, commentId }: RemoveCommentArgs,
+      _parent: any, { recipeId, commentId }: RemoveCommentArgs,
       context: any
     ) => {
       if (context.user) {

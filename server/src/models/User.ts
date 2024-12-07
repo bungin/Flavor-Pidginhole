@@ -1,6 +1,11 @@
 import { Schema, model, Document } from "mongoose";
 import bcrypt from "bcrypt";
 
+interface IFavorite extends Document {
+  recipeId: Schema.Types.ObjectId;
+  recipeName: string;
+}
+
 // Define an interface for the User document
 interface IUser extends Document {
   username: string;
@@ -10,6 +15,20 @@ interface IUser extends Document {
   favorites: Schema.Types.ObjectId[];
   isCorrectPassword(password: string): Promise<boolean>;
 }
+
+const favoriteSchema = new Schema<IFavorite>(
+  {
+    recipeId: {
+      type: Schema.Types.ObjectId,
+      ref: "Recipe",
+    },
+  },
+  {
+    _id: false,
+    toJSON: { getters: true },
+    toObject: { getters: true },
+  }
+)
 
 // Define the schema for the User document
 const userSchema = new Schema<IUser>(
@@ -37,12 +56,7 @@ const userSchema = new Schema<IUser>(
         ref: "Recipe",
       },
     ],
-    favorites: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Recipe",
-      },
-    ],
+    favorites: [favoriteSchema],
   },
   {
     timestamps: true,
