@@ -1,5 +1,5 @@
-import { Schema, model, Document } from 'mongoose';
-import bcrypt from 'bcrypt';
+import { Schema, model, Document } from "mongoose";
+import bcrypt from "bcrypt";
 
 // Define an interface for the User document
 interface IUser extends Document {
@@ -7,6 +7,7 @@ interface IUser extends Document {
   email: string;
   password: string;
   recipes: Schema.Types.ObjectId[];
+  favorites: Schema.Types.ObjectId[];
   isCorrectPassword(password: string): Promise<boolean>;
 }
 
@@ -23,7 +24,7 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, 'Must match an email address!'],
+      match: [/.+@.+\..+/, "Must match an email address!"],
     },
     password: {
       type: String,
@@ -33,15 +34,15 @@ const userSchema = new Schema<IUser>(
     recipes: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Recipe',
+        ref: "Recipe",
       },
     ],
     favorites: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Recipe',
+        ref: "Recipe",
       },
-    ]
+    ],
   },
   {
     timestamps: true,
@@ -50,8 +51,8 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-userSchema.pre<IUser>('save', async function (next) {
-  if (this.isNew || this.isModified('password')) {
+userSchema.pre<IUser>("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
@@ -59,10 +60,12 @@ userSchema.pre<IUser>('save', async function (next) {
   next();
 });
 
-userSchema.methods.isCorrectPassword = async function (password: string): Promise<boolean> {
+userSchema.methods.isCorrectPassword = async function (
+  password: string
+): Promise<boolean> {
   return bcrypt.compare(password, this.password);
 };
 
-const User = model<IUser>('User', userSchema);
+const User = model<IUser>("User", userSchema);
 
 export default User;

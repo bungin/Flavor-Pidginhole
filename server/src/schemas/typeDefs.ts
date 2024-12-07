@@ -5,7 +5,7 @@ const typeDefs = `
     email: String
     password: String
     recipes: [Recipe]!
-    favorites: [Recipe]!
+    favorites: [Recipe]
   }
 
   type Recipe {
@@ -63,6 +63,8 @@ const typeDefs = `
     removeComment(recipeId: ID!, commentId: ID!): Recipe
     addLike(recipeId: ID!): Recipe
     removeLike(recipeId: ID!): Recipe
+    addFavorite(recipeId: ID!): User
+    removeFavorite(recipeId: ID!): User
   }
 `;
 

@@ -60,7 +60,7 @@ const resolvers = {
       });
     },
     favorites: async (_parent: any, { recipeId }: RecipeArgs) => {
-      return await Recipe.findOne({ _id: recipeId }).populate({
+      return await Recipe.find({ _id: recipeId }).populate({
         path: "favorites",
         populate: "favorites",
       });

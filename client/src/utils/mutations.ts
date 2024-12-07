@@ -69,3 +69,19 @@ export const REMOVE_LIKE = gql`
     }
   }
 `;
+
+export const ADD_FAVORITE = gql`
+  mutation addFavorite($recipeId: ID!) {
+    addFavorite(recipeId: $recipeId) {
+      _id
+    }
+  }
+`;
+
+export const REMOVE_FAVORITE = gql`
+  mutation removeFavorite($recipeId: ID!) {
+    removeFavorite(recipeId: $recipeId) {
+      _id
+    }
+  }
+`;

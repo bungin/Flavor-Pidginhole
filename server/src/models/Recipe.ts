@@ -13,7 +13,7 @@ interface IRecipe extends Document {
   recipeDescription: string;
   recipeIngredients: string[];
   recipeInstructions: string[];
-  recipeLikes: typeof User[];
+  recipeLikes: (typeof User)[];
   comments: IComment[];
   createdAt: Date;
 }
@@ -79,7 +79,6 @@ const recipeSchema = new Schema<IRecipe>(
     },
     recipeLikes: [{ type: Schema.Types.ObjectId, ref: "User" }],
     comments: [commentSchema],
-
   },
   {
     timestamps: true,
