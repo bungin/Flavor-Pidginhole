@@ -51,7 +51,7 @@ const resolvers = {
     },
     recipes: async () => {
       const recipes = await Recipe.find().sort({ createdAt: -1 });
-      return recipes
+      return recipes;
     },
     recipe: async (_parent: any, { recipeId }: RecipeArgs) => {
       return await Recipe.findOne({ _id: recipeId }).populate({
@@ -122,7 +122,7 @@ const resolvers = {
         await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { recipes: recipe._id } },
-          {new: true}
+          { new: true }
         );
 
         return recipe;
@@ -167,6 +167,38 @@ const resolvers = {
             new: true,
             runValidators: true,
           }
+        );
+      }
+      return null;
+    },
+    addFavorite: async (
+      _parent: any,
+      { recipeId }: { recipeId: string },
+      context: any
+    ) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { favorites: recipeId } },
+          { new: true }
+        );
+      }
+      return null;
+    },
+    removeFavorite: async (
+      _parent: any,
+      { recipeId }: { recipeId: string },
+      context: any
+    ) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $pull: {
+              favorites: recipeId,
+            },
+          },
+          { new: true }
         );
       }
       return null;
