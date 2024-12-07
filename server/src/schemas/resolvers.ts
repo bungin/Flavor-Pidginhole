@@ -59,6 +59,13 @@ const resolvers = {
         populate: "commentAuthor",
       });
     },
+    favorites: async (_parent: any, { recipeId }: RecipeArgs) => {
+      return await Recipe.findOne({ _id: recipeId }).populate({
+        path: "favorites",
+        populate: "favorites",
+      });
+    },
+
     // Query to get the authenticated user's information
     // The 'me' query relies on the context to check if the user is authenticated
     me: async (_parent: any, _args: any, context: any) => {

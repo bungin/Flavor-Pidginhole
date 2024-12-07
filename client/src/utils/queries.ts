@@ -77,3 +77,14 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_FAVORITES = gql`
+  query favorites($recipeId: ID!) {
+    favorites(recipeId: $recipeId) {
+      _id
+      recipeName
+      recipeAuthor
+      recipeDescription
+    }
+  }
+`;

@@ -5,6 +5,7 @@ const typeDefs = `
     email: String
     password: String
     recipes: [Recipe]!
+    favorites: [Recipe]!
   }
 
   type Recipe {

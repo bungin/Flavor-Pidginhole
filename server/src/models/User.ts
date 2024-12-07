@@ -36,6 +36,12 @@ const userSchema = new Schema<IUser>(
         ref: 'Recipe',
       },
     ],
+    favorites: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Recipe',
+      },
+    ]
   },
   {
     timestamps: true,
