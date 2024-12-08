@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  align-items: center; /* Align the title and button vertically */
+  justify-content: flex-start; /* Align items to the left */
+  gap: 20px; /* Add space between the title and button */
+}
+
+.header h1 {
+  margin: 0; /* Remove default margin */
+}
+
+.plus-button {
+  background-color: #f0f0f0;
+  border: none;
+  color: white;
+  padding: 25px 30px;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 70% 50% 40% 80% / 50% 80% 60% 50%; /* More exaggerated asymmetry */
+  overflow: hidden; /* Ensure the splatter stays within bounds */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for depth */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.plus-button:hover {
+  background-color: #dbdbd9; /* Button hover color */
+  transform: scale(1.1); /* Slightly enlarge the button on hover */
+}
+
+/* Paint splatter effect on the blobby side */
+.plus-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.3); /* Light color for the splatter */
+  border-radius: 50%;
+  box-shadow: -40px -30px 30px rgba(255, 255, 255, 0.5),
+    30px 50px 40px rgba(255, 255, 255, 0.4), 0 0 60px rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Ensure the splatter doesn't block interaction with the button */
+}
+
+.plus-icon {
+  font-size: 25px; /* Adjust icon size */
+}
