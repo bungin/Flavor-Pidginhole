@@ -41,10 +41,18 @@ const LikeButton = ({ recipeId, recipeLikes }: any) => {
 
     return (
         <div>
-            {!recipeLikes.find((l: any) => l._id === data?.me?._id) && <button onClick={handleLike}>Like this recipe!</button>}
-            {recipeLikes.find((l: any) => l._id === data?.me?._id) && (
-                <button onClick={handleRemoveLike}>Unlike this recipe!</button>
-            )} {recipeLikes.length}
+            {recipeLikes && ( // Check if recipeLikes exists
+                <>
+                    {!recipeLikes.find((l: any) => l._id === data?.me?._id) && (
+                        <button onClick={handleLike}>Like this recipe!</button>
+                    )}
+                    {recipeLikes.find((l: any) => l._id === data?.me?._id) && (
+                        <button onClick={handleRemoveLike}>Unlike this recipe!</button>
+                    )}
+                    {recipeLikes.length}
+                </>
+            )}
+            {!recipeLikes && <p>Loading likes...</p>} {/* Optional: Display a loading message */}
         </div>
     );
 };
