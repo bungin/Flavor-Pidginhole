@@ -42,8 +42,8 @@ const FavoriteButton = ({ recipeId }: any) => {
 
   return (
     <div>
-        {!data.favorites.find((l: any) => l._id === data?.me?._id) && <button onClick={handleFavorite}>Favorite!</button>}
-        {data.favorites.find((l: any) => l._id === data?.me?._id) && <button onClick={handleRemoveFavorite}>Unfavorite!</button>}
+        {!data.me.favorites.find((l: any) => l._id === data?.me?._id) && <button onClick={handleFavorite}>Favorite!</button>}
+        {data.me.favorites.find((l: any) => l._id === data?.me?._id) && <button onClick={handleRemoveFavorite}>Unfavorite!</button>}
     </div>
   )
 };
