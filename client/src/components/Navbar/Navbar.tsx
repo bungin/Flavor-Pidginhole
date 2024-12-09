@@ -8,7 +8,7 @@ import { QUERY_ME } from '../../utils/queries';
 
 interface NavbarProps {
   logo: string;
-}
+};
 
 const Navbar: React.FC<NavbarProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

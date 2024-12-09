@@ -40,7 +40,7 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
         </>
     </div>
   );
-  }
+  };
 
   return (
     <div>
