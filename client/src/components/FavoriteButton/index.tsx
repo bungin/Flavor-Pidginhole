@@ -3,7 +3,7 @@ import { ADD_FAVORITE, REMOVE_FAVORITE } from "../../utils/mutations";
 import { useQuery } from "@apollo/client";
 import { QUERY_FAVORITES, QUERY_ME } from "../../utils/queries";
 
-const FavoriteButton = ({ recipeId }: any) => {
+const FavoriteButton = ({ recipeId, favorites }: any) => {
   const [addFavorite] = useMutation(ADD_FAVORITE);
   const [removeFavorite] = useMutation(REMOVE_FAVORITE);
   const { data } = useQuery(QUERY_ME);
@@ -13,6 +13,7 @@ const FavoriteButton = ({ recipeId }: any) => {
       console.log("You need to be logged in to like a recipe!");
       alert("You need to be logged in to like a recipe!");
     } else {
+      const userId = data.me._id;
       try {
         await addFavorite({
           variables: { recipeId },
@@ -29,6 +30,7 @@ const FavoriteButton = ({ recipeId }: any) => {
       console.log("You need to be logged in to like a recipe!");
       alert("You need to be logged in to like a recipe!");
     } else {
+      const userId = data.me._id;
       try {
         await removeFavorite({
           variables: { recipeId },
@@ -39,11 +41,11 @@ const FavoriteButton = ({ recipeId }: any) => {
       }
     }
   };
-
+  console.log(data, '1')
   return (
     <div>
-        {!data.me.favorites.find((l: any) => l._id === data?.me?._id) && <button onClick={handleFavorite}>Favorite!</button>}
-        {data.me.favorites.find((l: any) => l._id === data?.me?._id) && <button onClick={handleRemoveFavorite}>Unfavorite!</button>}
+       {!favorites?.find((l: any) => l._id === data?.me?._id) && <button onClick={handleFavorite}>Favorite!</button>}
+       {favorites?.find((l: any) => l._id === data?.me?._id) && <button onClick={handleRemoveFavorite}>Unfavorite!</button>}
     </div>
   )
 };

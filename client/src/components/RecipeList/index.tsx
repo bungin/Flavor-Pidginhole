@@ -1,17 +1,25 @@
 // Import `<Link>` component from React Router for internal hyperlinks
 import { Link } from "react-router-dom";
 import { Recipe } from "../../interfaces/Recipe";
+import { UserData } from "../../interfaces/UserData";
 import LikeButton from "../LikeButton";
-import FavoriteButton from "../FavoriteButton";
 interface RecipeListProps {
   recipes: Recipe[];
   title: string;
+  favorites?: UserData[];
 }
+
+// interface FavoritesProps {
+//   favorites: UserData[];
+//   title: string;
+// }
 
 const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
   if (!recipes.length) {
     return <h3>No recipes Yet</h3>;
   }
+
+
   return (
     <div>
       <h3>{title}</h3>
@@ -37,8 +45,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
             >
               View Recipe
             </Link>
-            <LikeButton recipeId={recipe._id} recipeLikes={recipe.recipeLikes} />
-            <FavoriteButton recipeId={recipe._id} />
+            <LikeButton recipeId={recipe._id} recipeLikes={recipe.recipeLikes}   />
           </div>
         ))}
     </div>
