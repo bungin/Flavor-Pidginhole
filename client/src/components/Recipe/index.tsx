@@ -32,11 +32,14 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
 
   if (!user?.username) {
     return (
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    );
+      <div>
+        <>
+         <h4>If you would like to create a post, sign in or sign up!</h4>
+
+          <RecipeList recipes={recipes} title="All Recipes" />
+        </>
+    </div>
+  );
   }
 
   return (
