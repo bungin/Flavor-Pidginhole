@@ -73,7 +73,21 @@ export const QUERY_ME = gql`
         recipeName
         recipeAuthor
         createdAt
+    }
+      favorites {
+        _id
+        recipeName
       }
+    }  
+  }
+`;
+
+export const QUERY_FAVORITES = gql`
+query Query {
+  favorites {
+    favorites {
+      _id
     }
   }
+}
 `;
