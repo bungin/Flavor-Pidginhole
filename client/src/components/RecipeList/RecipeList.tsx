@@ -20,7 +20,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
     <div className={styles.pageContainer}>
       <h3 className={styles.recipesTitle}>{title}</h3>
       <div className={styles.recipeGrid}>
-        {recipes
+        {[...recipes]
           .sort((a: Recipe, b: Recipe) => {
             return Number(b.createdAt) - Number(a.createdAt);
           })
