@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'; 
-
-// Remove or comment out the logo import if it's no longer used
 // import Logo from '../../../../assets/Production Vision/Logo.png'
+
+
 
 interface NavbarProps {
   // Remove logo prop if it's no longer used
@@ -19,7 +19,6 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   return (
     <nav className={`navbar ${isMenuOpen ? 'open' : ''}`}>
-      {/* The logo div is already commented out */}
       {/* <div className="logo">
         <img src={Logo} alt="Logo" />
       </div> */}
