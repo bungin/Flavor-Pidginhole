@@ -1,31 +1,70 @@
-.header {
+.create-post-container {
   display: flex;
-  align-items: center; /* Align the title and button vertically */
-  justify-content: flex-start; /* Align items to the left */
-  gap: 20px; /* Add space between the title and button */
+  align-items: center; /* Align buttons vertically */
+  gap: 8px; /* Small gap between buttons */
+  background-color: #ffffff;
+  padding: 8px 12px; /* Reduced padding for a more compact look */
+  border-radius: 8px; /* Rounded corners for the container */
+  border: 3px solid transparent; /* Initial border for animation effect */
+  animation: borderChange 3s infinite; /* Border color animation */
+
+  width: auto; /* Allows the container to shrink around the buttons */
+  min-width: 160px; /* Set a minimum width to prevent the container from being too narrow */
+  max-width: 225px; /* Set a maximum width to prevent the container from becoming too wide */
+  justify-content: align left; /* Center the buttons horizontally within the container */
 }
 
-.header h1 {
-  margin: 0; /* Remove default margin */
+/* Styling for the 'Create a Post' button */
+.create-post-button {
+  background-color: #ffffff;
+  border: none;
+  color: rgb(8, 8, 8);
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Keyframes for border animation */
+@keyframes borderChange {
+  0% {
+    border-color: #f3de2c;
+  }
+  25% {
+    border-color: #fbb02d;
+  }
+  50% {
+    border-color: #6699cc;
+  }
+  75% {
+    border-color: #5c8001;
+  }
+  100% {
+    border-color: #7cb518;
+  }
+}
+
+/* Styling for the 'Plus' button */
 .plus-button {
   background-color: #f0f0f0;
   border: none;
   color: white;
-  padding: 25px 30px;
-  font-size: 20px;
+  padding: 18px 22px; /* Adjusted padding for compactness */
+  font-size: 18px; /* Smaller font size for the icon */
   cursor: pointer;
   position: relative;
-  border-radius: 70% 50% 40% 80% / 50% 80% 60% 50%; /* More exaggerated asymmetry */
-  overflow: hidden; /* Ensure the splatter stays within bounds */
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for depth */
+  border-radius: 70% 50% 40% 80% / 50% 80% 60% 50%; /* Unique border radius for splatter effect */
+  overflow: hidden; /* Ensure the splatter stays inside bounds */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Shadow effect */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Hover effect for Plus button */
 .plus-button:hover {
-  background-color: #dbdbd9; /* Button hover color */
-  transform: scale(1.1); /* Slightly enlarge the button on hover */
+  background-color: #d9d8cc;
+  transform: scale(1.1); /* Slightly enlarge on hover */
 }
 
 /* Paint splatter effect on the blobby side */
@@ -36,14 +75,20 @@
   left: 50%;
   width: 200%;
   height: 200%;
-  background: rgba(255, 255, 255, 0.3); /* Light color for the splatter */
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   box-shadow: -40px -30px 30px rgba(255, 255, 255, 0.5),
     30px 50px 40px rgba(255, 255, 255, 0.4), 0 0 60px rgba(255, 255, 255, 0.3);
   transform: translate(-50%, -50%);
-  pointer-events: none; /* Ensure the splatter doesn't block interaction with the button */
+  pointer-events: none;
 }
 
+/* Styling for the Plus icon */
 .plus-icon {
-  font-size: 25px; /* Adjust icon size */
+  font-size: 20px; /* Smaller icon size */
+}
+
+/* Styling for the title text in the Create a Post button */
+.title-text {
+  font-weight: bold;
 }

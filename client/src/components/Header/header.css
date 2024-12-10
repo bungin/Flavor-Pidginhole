@@ -1,0 +1,33 @@
+.logo-sm {
+  width: 300px;
+  height: auto; /* Maintain aspect ratio */
+}
+
+header p {
+  font-size: 2rem;
+  font-family: "Baloo 2", sans-serif;
+
+  margin-left: 20px;
+
+  padding-left: 20px;
+}
+
+/* Make the other buttons smaller */
+header .btn {
+  font-size: 0.75rem; /* Smaller font size for buttons */
+  padding: 0.25rem 0.5rem; /* Adjust button padding */
+}
+
+.larger-btn {
+  font-size: 1rem; /* Larger font size for these buttons */
+  padding: 0.5rem 1rem; /* Larger padding */
+}
+
+header .container {
+  padding: 0.5rem 1rem; /* Tighter padding for the container */
+}
+
+header .bg-primary {
+  padding-top: 0.5rem; /* Less padding on the top */
+  padding-bottom: 0.5rem; /* Less padding on the bottom */
+}
