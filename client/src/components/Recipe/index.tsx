@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom"; 
 import RecipeForm from "../RecipeForm/index";
 import RecipeList from "../RecipeList/index";
 import { Recipe } from "../../interfaces/Recipe";
@@ -13,7 +12,7 @@ interface RecipesProps {
 }
 
 const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
-  const [showForm, setShowForm] = useState(false);  // State to control form visibility
+  const [showForm, setShowForm] = useState(false);
 
   const { loading, data } = useQuery(QUERY_ME);  // Query the logged-in user's data
  // }
@@ -25,7 +24,7 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
   };
 
   const toggleForm = () => {
-    setShowForm((prev) => !prev);  // Toggle the form visibility when button is clicked
+    setShowForm((prev) => !prev);  
   };
 
   if(loading) return <div>Loading...</div>;
@@ -44,23 +43,29 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
 
   return (
     <div>
-        <>
-          <div className="header">
-            <h1>Create a Post</h1>
-            <button 
-              className="plus-button" 
-              aria-label="Create a Post" 
-              onClick={toggleForm}  // Toggle the visibility of RecipeForm
-            >
-              <span className="plus-icon">	
-              &#128993;</span>
-            </button>
-          </div>
-    
-          {showForm && <RecipeForm onAddRecipe={handleAddRecipe} />}
-    
-          <RecipeList recipes={recipes} title="All Recipes" />
-        </>
+      <div className="header">
+        {/* Create a Post text wrapped in a button */}
+        <button
+          className="create-post-button"
+          onClick={toggleForm}  
+        >
+          <span className="title-text">Create a Post</span>
+        </button>
+        
+        {/* Separate button for the plus icon */}
+        <button
+          className="plus-button"
+          aria-label="Create a Post"
+          onClick={toggleForm} 
+        >
+          <span className="plus-icon">&#128993;</span>
+        </button>
+      </div>
+
+      {/* Conditionally render RecipeForm */}
+      {showForm && <RecipeForm onAddRecipe={handleAddRecipe} />}
+
+      <RecipeList recipes={recipes} title="All Recipes" />
     </div>
   );
 };

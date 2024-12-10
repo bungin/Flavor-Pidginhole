@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'; 
+
 import Logo from '../../../../assets/Production Vision/Logo.png'
 import { useQuery } from '@apollo/client';
 import { QUERY_ME } from '../../utils/queries';
@@ -53,9 +54,9 @@ const Navbar: React.FC<NavbarProps> = () => {
   
   return (
     <nav className={`navbar ${isMenuOpen ? 'open' : ''}`}>
-      <div className="logo">
+      {/* <div className="logo">
         <img src={Logo} alt="Logo" />
-      </div>
+      </div> */}
 
       {/* Hamburger menu button */}
       <button className="hamburger" onClick={toggleMenu}>
