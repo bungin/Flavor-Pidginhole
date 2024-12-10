@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'; 
-// import Logo from '../../../../assets/Production Vision/Logo.png'
 
-
-
-interface NavbarProps {
-  // Remove logo prop if it's no longer used
-  // logo: string; 
-}
-
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<any> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -19,9 +11,6 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   return (
     <nav className={`navbar ${isMenuOpen ? 'open' : ''}`}>
-      {/* <div className="logo">
-        <img src={Logo} alt="Logo" />
-      </div> */}
 
       {/* Hamburger menu button */}
       <button className="hamburger" onClick={toggleMenu}>
