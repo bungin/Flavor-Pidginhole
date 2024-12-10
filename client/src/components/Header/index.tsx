@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { type MouseEvent } from 'react';
 import Auth from '../../utils/auth';
 import Logo from '../../../../assets/Production Vision/Logo.png';  // Correct import path for the logo
-import './Header.css';
+import './header.css';
 
 
 
