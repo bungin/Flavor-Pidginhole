@@ -1,6 +1,6 @@
 .logo-sm {
   width: 300px;
-  height: auto;
+  height: auto; /* Maintain aspect ratio */
 }
 
 header p {

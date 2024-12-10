@@ -51,6 +51,7 @@
   display: flex;
   list-style: none;
   gap: 20px;
+  margin-left: auto; /* This pushes the links to the right */
 }
 
 .nav-links li {
