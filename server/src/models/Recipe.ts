@@ -79,10 +79,9 @@ const recipeSchema = new Schema<IRecipe>(
     },
     recipeLikes: [{ type: Schema.Types.ObjectId, ref: "User" }],
     comments: [commentSchema],
-
+    createdAt: {type: Date, default: Date.now},
   },
   {
-    timestamps: true,
     toJSON: { getters: true },
     toObject: { getters: true },
   }
