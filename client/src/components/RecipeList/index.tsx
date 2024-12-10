@@ -2,7 +2,8 @@
 import { Link } from "react-router-dom";
 import { Recipe } from "../../interfaces/Recipe";
 import { UserData } from "../../interfaces/UserData";
-import LikeButton from "../LikeButton";
+import ReactionButton from "../ReactionButton";
+
 interface RecipeListProps {
   recipes: Recipe[];
   title: string;
@@ -45,7 +46,9 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
             >
               View Recipe
             </Link>
-            <LikeButton recipeId={recipe._id} recipeLikes={recipe.recipeLikes}   />
+            <ReactionButton recipe={recipe} data={recipe.recipeLikes} mode="like" /> 
+            <span>{recipe.recipeLikes?.length}</span>
+            <ReactionButton recipe={recipe} mode="favorite" />
           </div>
         ))}
     </div>

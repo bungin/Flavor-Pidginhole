@@ -84,10 +84,9 @@ export const QUERY_ME = gql`
 
 export const QUERY_FAVORITES = gql`
 query Query {
-  me {
+  favorites {
     favorites {
       _id
-      recipeName
     }
   }
 }

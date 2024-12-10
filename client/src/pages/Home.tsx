@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-
 import { QUERY_RECIPES } from '../utils/queries.ts';
 import Recipes from '../components/Recipe/index.tsx';
 

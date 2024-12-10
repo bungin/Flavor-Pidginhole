@@ -64,7 +64,7 @@ const resolvers = {
     me: async (_parent: any, _args: any, context: any) => {
       // If the user is authenticated, find and return the user's information along with their recipes
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("recipes");
+        return User.findOne({ _id: context.user._id }).populate("recipes").populate("favorites");
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError("Could not authenticate user.");
@@ -246,7 +246,7 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { favorites: recipeId } },
           { new: true }
-        );
+        ).populate("recipes");
       }
       return null;
     },
@@ -260,7 +260,7 @@ const resolvers = {
           { _id: context.user._id },
           { $pull: { favorites: recipeId } },
           { new: true }
-        );
+        ).populate("recipes");
       }
       return null;
     },
