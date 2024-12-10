@@ -1,7 +1,7 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-
+import styles from "./RecipeForm.module.css";
 import { ADD_RECIPE } from "../../utils/mutations";
 import { QUERY_RECIPES, QUERY_ME } from "../../utils/queries";
 
@@ -10,10 +10,10 @@ import Auth from "../../utils/auth";
 import { Recipe } from "../../interfaces/Recipe";
 
 interface RecipeFormProps {
-  onAddRecipe: (recipe:Recipe) => void;
+  onAddRecipe: (recipe: Recipe) => void;
 }
 
-const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
+const RecipeForm: React.FC<RecipeFormProps> = ({ onAddRecipe }) => {
   //State for the recipe text
   const [recipe, setRecipe] = useState<Recipe>({
     recipeName: "",
@@ -107,70 +107,69 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
       ...prevState,
       recipeInstructions: updatedInstruction,
     })
-  )
-};
+    )
+  };
 
   //Handle adding an instruction
   const handleAddInstruction = () => {
-      setRecipe((prevState) => ({
-        ...prevState,
-        recipeInstructions: [...prevState.recipeInstructions, ""],
-      }));
-    };
+    setRecipe((prevState) => ({
+      ...prevState,
+      recipeInstructions: [...prevState.recipeInstructions, ""],
+    }));
+  };
 
   //Handle removing an instruction
   const handleRemoveInstruction = (index: number) => {
-      setRecipe((prevState) => ({
-        ...prevState,
-        recipeInstructions: prevState.recipeInstructions.filter(
-          (_instruction, idx) => idx !== index
-        ),
-      }));
-    };
+    setRecipe((prevState) => ({
+      ...prevState,
+      recipeInstructions: prevState.recipeInstructions.filter(
+        (_instruction, idx) => idx !== index
+      ),
+    }));
+  };
 
   return (
-      <div>
-        <h3>What Is the name of your recipe?</h3>
+    <div>
+      <h3>What Is the name of your recipe?</h3>
 
-        {Auth.loggedIn() ? (
-          <>
-            <form
-              className="flex-row justify-center justify-space-between-md align-center"
-              onSubmit={handleFormSubmit}
-            >
-              {/* Recipe Name */}
-              <div className="col-12 col-lg-9">
-                <textarea
-                  name="recipeName"
-                  placeholder="What is your recipe name?"
-                  value={recipe.recipeName}
-                  className="form-input w-100"
-                  style={{ lineHeight: "1.5", resize: "vertical" }}
-                  onChange={handleChange}
-                ></textarea>
-              </div>
+      {Auth.loggedIn() ? (
+        <>
+          <form
+            className={styles.formContainer}
+            onSubmit={handleFormSubmit}
+          >
+            {/* Recipe Name */}
+            <div className={styles.formField}>
+              <textarea
+                name="recipeName"
+                placeholder="What is your recipe name?"
+                value={recipe.recipeName}
+                className={styles.textArea}
+                onChange={handleChange}
+              ></textarea>
+            </div>
 
-              {/* Recipe Description */}
-              <div className="col-12">
-                <h4>How would you describe your recipe?</h4>
-                <textarea
-                  name="recipeDescription"
-                  placeholder="Describe your recipe"
-                  value={recipe.recipeDescription}
-                  className="form-input w-100"
-                  style={{ lineHeight: "1.5", resize: "vertical" }}
-                  onChange={handleChange}
-                ></textarea>
-              </div>
-              <div className="column-container">
+            {/* Recipe Description */}
+            <div className={styles.formField}>
+              <h4>How would you describe your recipe?</h4>
+              <textarea
+                name="recipeDescription"
+                placeholder="Describe your recipe"
+                value={recipe.recipeDescription}
+                className={styles.textArea}
+                onChange={handleChange}
+              ></textarea>
+            </div>
+
+            <div className={styles.columnContainer}>
               {/* Ingredients */}
-              <div className="column">
+              <div className={styles.column}>
                 <h4>Ingredients</h4>
                 {recipe.recipeIngredients.map((ingredient, index) => {
                   return (
                     <div
                       key={index}
-                      className="flex-row justify-space-between my-2"
+                      className={styles.flexRow}
                     >
                       <input
                         type="text"
@@ -183,7 +182,7 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                       <button
                         type="button"
                         onClick={() => handleRemoveIngredient(index)}
-                        className="btn btn-danger"
+                        className={styles.buttonDanger}
                       >
                         -
                       </button>
@@ -193,20 +192,20 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                 <button
                   type="button"
                   onClick={handleAddIngredient}
-                  className="btn btn-secondary mt-2"
+                  className={styles.buttonSecondary}
                 >
                   Add Ingredient
                 </button>
               </div>
 
               {/* Instructions */}
-              <div className="column">
+              <div className={styles.column}>
                 <h4>Instructions</h4>
                 {recipe.recipeInstructions.map((instruction, index) => {
                   return (
                     <div
                       key={index}
-                      className="flex-row my-2"
+                      className={styles.flexRow}
                     >
                       <input
                         type="text"
@@ -219,7 +218,7 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                       <button
                         type="button"
                         onClick={() => handleRemoveInstruction(index)}
-                        className="btn btn-danger"
+                        className={styles.buttonDanger}
                       >
                         -
                       </button>
@@ -229,40 +228,41 @@ const RecipeForm:React.FC<RecipeFormProps> = ({onAddRecipe}) => {
                 <button
                   type="button"
                   onClick={handleAddInstruction}
-                  className="btn btn-secondary mt-2"
+                  className={styles.buttonSecondary}
                 >
                   Add Instruction
                 </button>
               </div>
-                </div>
-                {/* Submit */}
-              <div className="col-12 col-lg-3">
-                <button
-                  className="btn btn-primary btn-block py-3"
-                  type="submit"
-                >
-                  Add Recipe
-                </button>
-              </div>
+            </div>
 
-              {/* Error */}
-              {error && (
-                <div className="col-12 my-3 bg-danger text-white p-3">
-                  {error.message}
-                </div>
-              )}
-            </form>
-          </>
-        ) : (
-          // If user is not logged in
-          <p>
-            You need to be logged in to share your recipes. Please{" "}
-            <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-          </p>
-        )}
-      </div>
-    );
-  };
+            {/* Submit */}
+            <div className={styles.formField}>
+              <button
+                className={`${styles.buttonPrimary} ${styles.buttonFullWidth}`}
+                type="submit"
+              >
+                Add Recipe
+              </button>
+            </div>
+
+            {/* Error */}
+            {error && (
+              <div className="col-12 my-3 bg-danger text-white p-3">
+                {error.message}
+              </div>
+            )}
+          </form>
+        </>
+      ) : (
+        // If user is not logged in
+        <p>
+          You need to be logged in to share your recipes. Please{" "}
+          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+        </p>
+      )}
+    </div>
+  );
+};
 
 
 export default RecipeForm;
