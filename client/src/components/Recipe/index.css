@@ -1,12 +1,40 @@
 .header {
   display: flex;
-  align-items: center; /* Align the title and button vertically */
+  align-items: center; /* Align the buttons vertically */
   justify-content: flex-start; /* Align items to the left */
-  gap: 20px; /* Add space between the title and button */
+  gap: 10px; /* Space between the title button and the plus icon button */
 }
 
-.header h1 {
-  margin: 0; /* Remove default margin */
+.create-post-button {
+  background-color: #ffffff;
+  border: 3px solid #f3de2c; /* Initial border color */
+  color: rgb(8, 8, 8);
+  padding: 15px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /* Apply border animation constantly */
+  animation: borderChange 3s infinite; /* Border color animation that runs indefinitely */
+}
+
+@keyframes borderChange {
+  0% {
+    border-color: #f3de2c;
+  }
+  25% {
+    border-color: #fbb02d;
+  }
+  50% {
+    border-color: #6699cc;
+  }
+  75% {
+    border-color: #5c8001;
+  }
+  100% {
+    border-color: #7cb518;
+  }
 }
 
 .plus-button {
@@ -24,7 +52,7 @@
 }
 
 .plus-button:hover {
-  background-color: #dbdbd9; /* Button hover color */
+  background-color: #d9d8cc; /* Button hover color */
   transform: scale(1.1); /* Slightly enlarge the button on hover */
 }
 
@@ -46,4 +74,8 @@
 
 .plus-icon {
   font-size: 25px; /* Adjust icon size */
+}
+
+.title-text {
+  font-weight: bold;
 }
