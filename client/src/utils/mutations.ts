@@ -12,6 +12,17 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+  mutation updateUser($displayname: String, $pronouns: String, $bio: String, $location: String) {
+    updateUser(displayName: $displayname, pronouns: $pronouns, bio: $bio, location: $location) {
+      _id
+      username
+      email
+    }
+  }
+`;
+
+
 export const ADD_USER = gql`
   mutation Mutation($input: UserInput!) {
     addUser(input: $input) {

@@ -236,6 +236,16 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    updateUser: async (_: any, { pronouns, bio, location }: any, context: any) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { pronouns, bio, location },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
+    },
     addFavorite: async (
       _parent: any,
       { recipeId }: { recipeId: string },

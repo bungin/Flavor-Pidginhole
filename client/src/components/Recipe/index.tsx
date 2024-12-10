@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RecipeForm from "../RecipeForm/index";
-import RecipeList from "../RecipeList/index";
+import RecipeList from "../RecipeList/RecipeList";
 import { Recipe } from "../../interfaces/Recipe";
 import "./index.css";
 
@@ -23,7 +23,7 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
   };
 
   const toggleForm = () => {
-    setShowForm((prev) => !prev);  
+    setShowForm((prev) => !prev);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -62,8 +62,7 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
 
       {/* Conditionally render RecipeForm */}
       {showForm && <RecipeForm onAddRecipe={handleAddRecipe} />}
-
-      <RecipeList recipes={recipes} title="All Recipes" />
+      <RecipeList recipes={[...recipes]} title="All Recipes" />
     </div>
   );
 };
