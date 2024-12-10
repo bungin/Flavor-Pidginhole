@@ -37,18 +37,45 @@ const Profile = () => {
 
 
   return (
-    <div>
-      <div className="flex-row justify-center mb-3">
-        <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-          {`${user?.username}`}'s profile.
+    <div className="profile-page">
+      <div className="profile-sidebar">
+        {/* User Info Box */}
+        <div className="user-info-box">
+          {/* <div className="profile-picture"> */}
+            {/* Placeholder for profile picture */}
+            {/* <img */}
+              {/* src="/path/to/default-profile-pic.jpg" */}
+              {/* alt={`${user?.username}'s profile`} */}
+            {/* /> */}
+          {/* </div> */}
+          <h3>{user.displayName || user.username}</h3>
+          <p>Pronouns: {user.pronouns?.join(", ") || "Not specified"}</p>
+          <p>Bio: {user.bio?.join(" ") || "No bio available"}</p>
+          <p>Location: {user.location?.join(", ") || "Not specified"}</p>
+        </div>
+
+        {/* Favorite Posts Box */}
+        <div className="favorite-posts-box">
+          <h4>Favorite Posts</h4>
+          <ul>
+            {user.favoritePosts?.length > 0 ? (
+              user.favoritePosts.map((post: any, index: number) => (
+                <li key={index}>{post.title}</li>
+              ))
+            ) : (
+              <p>No favorite posts yet.</p>
+            )}
+          </ul>
+        </div>
+      </div>
+
+      <div className="profile-content">
+        <h2 className="profile-header">
+          {`${user?.username}`}'s profile
         </h2>
-
-        <div className="col-12 col-md-10 mb-5">
+        <div>
           {!userParam && (
-            <div
-              className="col-12 col-md-10 mb-3 p-3"
-
-            >
+            <div className="recipes-section">
               <Recipes recipes={user?.recipes} />
             </div>
           )}
