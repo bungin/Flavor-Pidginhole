@@ -24,7 +24,7 @@ const Profile = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-console.log(user);
+  console.log(user);
   if (!user?.username) {
     return (
       <h4>
@@ -40,14 +40,14 @@ console.log(user);
     <div>
       <div className="flex-row justify-center mb-3">
         <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-            {`${user?.username}`}'s profile.
+          {`${user?.username}`}'s profile.
         </h2>
 
         <div className="col-12 col-md-10 mb-5">
           {!userParam && (
             <div
               className="col-12 col-md-10 mb-3 p-3"
-              style={{ border: "1px dotted #1a1a1a" }}
+
             >
               <Recipes recipes={user?.recipes} />
             </div>
