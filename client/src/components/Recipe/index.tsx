@@ -63,7 +63,7 @@ const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
       {/* Conditionally render RecipeForm */}
       {showForm && <RecipeForm onAddRecipe={handleAddRecipe} />}
 
-      <RecipeList recipes={recipes} title="All Recipes" />
+      <RecipeList recipes={[...recipes]} title="All Recipes" />
     </div>
   );
 };

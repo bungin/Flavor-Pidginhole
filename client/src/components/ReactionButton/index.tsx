@@ -18,7 +18,6 @@ const ReactionButton = ({ recipe, mode, data }: any) => {
   const userId = userData?.me?._id ?? "";
     if (!data) {
       data = userData?.me?.favorites
-      console.log(userData?.me?.favorites)
     }
   // nullish coalescing operator "??"
 
