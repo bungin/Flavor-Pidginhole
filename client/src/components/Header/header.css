@@ -1,10 +1,8 @@
-/* Make the logo smaller */
 .logo-sm {
-  width: 300px; /* Adjust as necessary for smaller logo */
-  height: auto; /* Maintain aspect ratio */
+  width: 300px;
+  height: auto;
 }
 
-/* Adjust the font size of the header text */
 header p {
   font-size: 2rem;
   font-family: "Baloo 2", sans-serif;
@@ -20,13 +18,11 @@ header .btn {
   padding: 0.25rem 0.5rem; /* Adjust button padding */
 }
 
-/* Target and enlarge the Login and Signup buttons */
 .larger-btn {
   font-size: 1rem; /* Larger font size for these buttons */
   padding: 0.5rem 1rem; /* Larger padding */
 }
 
-/* Adjust the spacing between elements */
 header .container {
   padding: 0.5rem 1rem; /* Tighter padding for the container */
 }
