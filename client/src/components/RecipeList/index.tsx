@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Recipe } from "../../interfaces/Recipe";
 import { UserData } from "../../interfaces/UserData";
 import ReactionButton from "../ReactionButton";
-import { useState } from "react";
 
 interface RecipeListProps {
   recipes: Recipe[];
@@ -11,15 +10,8 @@ interface RecipeListProps {
   favorites?: UserData[];
 }
 
-// interface FavoritesProps {
-//   favorites: UserData[];
-//   title: string;
-// }
-
 const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
-  // const [sortedRecipes] = useState(
-    
-  // );
+
 [...recipes]
   if (!recipes.length) {
     return <h3>No recipes Yet</h3>;
