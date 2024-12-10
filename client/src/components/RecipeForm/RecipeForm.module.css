@@ -124,7 +124,7 @@
 
 .buttonPrimary:hover {
   background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
-  transform: translateY(-5px);
+
   box-shadow: 0 0 20px #6a11cb, 0 0 40px #2575fc, 0 0 60px #6a11cb;
 }
 
@@ -132,15 +132,6 @@
   transform: translateY(2px);
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .buttonSecondary {
   background: #6c757d;
@@ -164,7 +155,7 @@
   width: 200%;
   height: 200%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-  animation: spin 8s linear infinite;
+
 }
 
 .buttonSecondary:hover {
