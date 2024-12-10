@@ -62,6 +62,8 @@ const typeDefs = `
     removeComment(recipeId: ID!, commentId: ID!): Recipe
     addLike(recipeId: ID!): Recipe
     removeLike(recipeId: ID!): Recipe
+
+    updateUser(displayName:string, pronouns: string, bio: string, location: string): User
   }
 `;
 
