@@ -10,6 +10,9 @@ import SingleRecipe from './pages/SingleRecipe.js';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
 
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+
+
 
 const router = createBrowserRouter([
   {
