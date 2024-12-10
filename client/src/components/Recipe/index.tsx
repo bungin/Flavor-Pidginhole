@@ -4,6 +4,9 @@ import RecipeList from "../RecipeList/index";
 import { Recipe } from "../../interfaces/Recipe";
 import "./index.css";
 
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
+
 interface RecipesProps {
   recipes: Recipe[];
 }
@@ -11,12 +14,31 @@ interface RecipesProps {
 const Recipes: React.FC<RecipesProps> = ({ recipes }) => {
   const [showForm, setShowForm] = useState(false);
 
+  const { loading, data } = useQuery(QUERY_ME);  // Query the logged-in user's data
+ // }
+
+  const user = data?.me || {};
+
   const handleAddRecipe = (newRecipe: Recipe) => {
     console.log(newRecipe);
   };
 
   const toggleForm = () => {
     setShowForm((prev) => !prev);  
+  };
+
+  if(loading) return <div>Loading...</div>;
+
+  if (!user?.username) {
+    return (
+      <div>
+        <>
+         <h4>If you would like to create a post, sign in or sign up!</h4>
+
+          <RecipeList recipes={recipes} title="All Recipes" />
+        </>
+    </div>
+  );
   };
 
   return (
