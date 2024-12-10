@@ -63,7 +63,7 @@ const typeDefs = `
     addLike(recipeId: ID!): Recipe
     removeLike(recipeId: ID!): Recipe
 
-    updateUser(displayName:string, pronouns: string, bio: string, location: string): User
+    updateUser(displayName:String, pronouns: String, bio: String, location: String): User
   }
 `;
 
