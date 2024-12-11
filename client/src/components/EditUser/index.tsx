@@ -7,29 +7,31 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-
+import { QUERY_ME } from "../../utils/queries";
 import { UPDATE_USER } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-interface UserProps {
+export interface UserProps {
   displayName: string;
-  pronouns: string[];
-  bio: string[];
-  location: string[];
+  pronouns: string;
+  bio: string;
+  location: string;
 }
 
 interface UserFormProps {
-  onUserUpdate: (userProps: UserProps) => void;
+  onUserUpdate: () => void;
+  existingUser: UserProps;
 }
 
-const UserForm: React.FC<UserFormProps> = ({ onUserUpdate }) => {
+const UserForm: React.FC<UserFormProps> = ({ onUserUpdate, existingUser }) => {
   //State for the recipe text
   const [userProps, setUserProps] = useState<UserProps>({
-    displayName: "",
-    pronouns: [],
-    bio: [],
-    location: [],
+    displayName: existingUser?.displayName?? "",
+    pronouns: existingUser?.pronouns??"",
+    bio: existingUser?.bio??"",
+    location: existingUser?.location??"",
+    
   });
 
   //Mutation Setup
@@ -42,22 +44,22 @@ const UserForm: React.FC<UserFormProps> = ({ onUserUpdate }) => {
     try {
       await updateUser({
         variables: {
-            displayName: userProps.displayName,
-            pronouns: userProps.pronouns,
-            bio: userProps.bio,
-            location: userProps.location,
+            ...userProps,
           },
+        refetchQueries: [{ query: QUERY_ME }],
         },
       );
-
-      onUserUpdate(userProps);
+      
 
       setUserProps({
         displayName: "",
-        pronouns: [],
-        bio: [],
-        location: [],
+        pronouns: "",
+        bio: "",
+        location: "",
       });
+      
+      onUserUpdate();
+
     } catch (err) {
       console.error(err);
     }
@@ -75,7 +77,7 @@ const UserForm: React.FC<UserFormProps> = ({ onUserUpdate }) => {
   const handlePronounChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setUserProps((prevState) => ({
       ...prevState,
-      pronouns: event.target.value.split(',').map((str) => str.trim()),
+      pronouns: event.target.value,
     }));
   };
 
@@ -83,7 +85,7 @@ const UserForm: React.FC<UserFormProps> = ({ onUserUpdate }) => {
   const handleBioChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setUserProps((prevState) => ({
       ...prevState,
-      bio: event.target.value.split(',').map((str) => str.trim()),
+      bio: event.target.value,
     }));
   };
 
@@ -91,7 +93,7 @@ const UserForm: React.FC<UserFormProps> = ({ onUserUpdate }) => {
   const handleLocationChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setUserProps((prevState) => ({
       ...prevState,
-      location: event.target.value.split(',').map((str) => str.trim()),
+      location: event.target.value,
     }));
   };
 
@@ -120,7 +122,7 @@ const UserForm: React.FC<UserFormProps> = ({ onUserUpdate }) => {
               <textarea
                 name="pronouns"
                 placeholder="What are your pronouns? (e.g., he/him, she/her, they/them)"
-                value={userProps.pronouns.join(", ") || ""} // Join the array into a string
+                value={userProps.pronouns}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical", minHeight: "50px"}}
                 onChange={handlePronounChange}
@@ -132,7 +134,7 @@ const UserForm: React.FC<UserFormProps> = ({ onUserUpdate }) => {
               <textarea
                 name="bio"
                 placeholder="Tell us about yourself!"
-                value={userProps.bio.join(", ") || ""} // Join the array into a string
+                value={userProps.bio}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical", minHeight: "50px" }}
                 onChange={handleBioChange}
@@ -144,7 +146,7 @@ const UserForm: React.FC<UserFormProps> = ({ onUserUpdate }) => {
               <textarea
                 name="location"
                 placeholder="Where are you from?"
-                value={userProps.location.join(", ") || ""} // Join the array into a string
+                value={userProps.location}
                 className="form-input w-100"
                 style={{ lineHeight: "1.5", resize: "vertical", minHeight: "50px" }}
                 onChange={handleLocationChange}

@@ -6,6 +6,10 @@ const typeDefs = `
     password: String
     recipes: [Recipe]!
     favorites: [Recipe]!
+    displayName: String
+    pronouns: String
+    bio: String
+    location: String
   }
 
   type Recipe {

@@ -6,6 +6,10 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      displayName
+      pronouns
+      bio
+      location
       recipes {
         _id
         recipeName
@@ -69,6 +73,10 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      displayName
+      pronouns
+      bio
+      location
       recipes {
         _id
         recipeName
