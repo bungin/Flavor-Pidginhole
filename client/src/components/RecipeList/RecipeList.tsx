@@ -4,6 +4,8 @@ import { Recipe } from '../../interfaces/Recipe';
 import { UserData } from '../../interfaces/UserData';
 import ReactionButton from '../ReactionButton';
 import styles from './RecipeList.module.css';
+import { QUERY_FAVORITES } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
 interface RecipeListProps {
   recipes: Recipe[];
@@ -12,6 +14,7 @@ interface RecipeListProps {
 }
 
 const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
+  const { data: favoritesData } = useQuery(QUERY_FAVORITES);
   if (!recipes.length) {
     return <h3>No recipes Yet</h3>;
   }
@@ -43,20 +46,29 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
                 </Link>
 
                 <div className={styles.reactionContainer}>
-                  <div className={styles.reactionButton}>
+                  <div className={styles.reactionGroup}>
                     <ReactionButton
                       recipe={recipe}
                       data={recipe.recipeLikes}
                       mode="like"
                     />
-                    <span className={styles.reactionText}></span>
+                    <div className={styles.countDisplay}>
+                      <span>{recipe.recipeLikes?.length || 0}</span>
+                      <span className={styles.countLabel}>likes</span>
+                    </div>
                   </div>
-                  <div className={styles.reactionButton}>
+
+                  {/* Favorite Button Group */}
+                  <div className={styles.reactionGroup}>
                     <ReactionButton
                       recipe={recipe}
+                      data={recipe.recipeFavorites}
                       mode="favorite"
                     />
-                    <span className={styles.reactionText}></span>
+                    <div className={styles.countDisplay}>
+                      <span>{favoritesData?.favorites.favorites.filter((f: any) => f._id === recipe._id).length}</span>
+                      <span className={styles.countLabel}>favorites</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -66,5 +78,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes, title }) => {
     </div>
   );
 };
+
+
 
 export default RecipeList;

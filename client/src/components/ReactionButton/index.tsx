@@ -6,7 +6,7 @@ import {
   REMOVE_FAVORITE,
 } from "../../utils/mutations";
 import { useQuery } from "@apollo/client";
-import { QUERY_ME, QUERY_RECIPES } from "../../utils/queries";
+import { QUERY_ME, QUERY_RECIPES, QUERY_FAVORITES } from "../../utils/queries";
 
 const ReactionButton = ({ recipe, mode, data }: any) => {
   const [addLike] = useMutation(ADD_LIKE);
@@ -16,9 +16,9 @@ const ReactionButton = ({ recipe, mode, data }: any) => {
   const { data: userData } = useQuery(QUERY_ME);
   const recipeId = recipe._id;
   const userId = userData?.me?._id ?? "";
-    if (!data) {
-      data = userData?.me?.favorites
-    }
+  if (!data) {
+    data = userData?.me?.favorites
+  }
   // nullish coalescing operator "??"
 
   const handleReaction = async () => {
@@ -38,7 +38,7 @@ const ReactionButton = ({ recipe, mode, data }: any) => {
         case "favorite":
           await addFavorite({
             variables: { recipeId },
-            refetchQueries: [{ query: QUERY_ME }, {query: QUERY_RECIPES} ],
+            refetchQueries: [{ query: QUERY_ME }, { query: QUERY_RECIPES }, { query: QUERY_FAVORITES }],
           });
           break;
         default:
@@ -67,7 +67,7 @@ const ReactionButton = ({ recipe, mode, data }: any) => {
         case "favorite":
           await removeFavorite({
             variables: { recipeId },
-            refetchQueries: [{ query: QUERY_ME }, {query: QUERY_RECIPES }],
+            refetchQueries: [{ query: QUERY_ME }, { query: QUERY_RECIPES }, { query: QUERY_FAVORITES }],
           });
           break;
         default:
@@ -80,16 +80,16 @@ const ReactionButton = ({ recipe, mode, data }: any) => {
   };
 
   const Button = () => {
-    return data?.find((l: any) => l._id === userId) || data?.find((l: any) => l._id === recipe._id) ? 
-    <button onClick={handleRemoveReaction}>{mode === 'like' ? 'Unlike' : 'Unfavorite' } this recipe!</button>
-    :
-    <button onClick={handleReaction}>{mode === 'like' ? 'Like' : 'Favorite' } this recipe!</button>
+    return data?.find((l: any) => l._id === userId) || data?.find((l: any) => l._id === recipe._id) ?
+      <button onClick={handleRemoveReaction}>{mode === 'like' ? 'Unlike' : 'Unfavorite'} this recipe!</button>
+      :
+      <button onClick={handleReaction}>{mode === 'like' ? 'Like' : 'Favorite'} this recipe!</button>
   }
 
   return (
-      <div>
-        <Button/>
-      </div>
+    <div>
+      <Button />
+    </div>
   );
 };
 
