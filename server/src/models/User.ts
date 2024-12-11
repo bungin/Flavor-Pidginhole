@@ -6,6 +6,10 @@ interface IUser extends Document {
   username: string;
   email: string;
   password: string;
+  displayName?: string;
+  pronouns?: string;
+  bio?: string;
+  location?: string;
   recipes: Schema.Types.ObjectId[];
   favorites: Schema.Types.ObjectId[];
   isCorrectPassword(password: string): Promise<boolean>;
@@ -30,6 +34,22 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
       minlength: 5,
+    },
+    displayName: {
+      type: String,
+      required: false,
+    },
+    pronouns: {
+      type: String,
+      required: false,
+    },
+    bio: {
+      type: String,
+      required: false,
+    },
+    location: {
+      type: String,
+      required: false,
     },
     recipes: [
       {

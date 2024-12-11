@@ -2,15 +2,22 @@ import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { useState } from "react";
 
 import Auth from "../utils/auth";
 import Recipes from "../components/Recipe";
+import UserForm from "../components/EditUser";
+
 
 const Profile = () => {
   const { username: userParam } = useParams();
+  const [editingProfile, setEditingProfile] = useState(false);
+  
+
 
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
+    variables: { username: userParam 
+    },
   });
 
   const user = data?.me || data?.user || {};
@@ -48,19 +55,33 @@ const Profile = () => {
               {/* alt={`${user?.username}'s profile`} */}
             {/* /> */}
           {/* </div> */}
-          <h3>{user.displayName || user.username}</h3>
-          <p>Pronouns: {user.pronouns?.join(", ") || "Not specified"}</p>
-          <p>Bio: {user.bio?.join(" ") || "No bio available"}</p>
-          <p>Location: {user.location?.join(", ") || "Not specified"}</p>
+          <h3>{user?.displayName || user.username}</h3>
+          <button onClick={() => setEditingProfile(true)}>Edit Profile</button>
+          {editingProfile && (
+            <UserForm
+            existingUser={user} 
+              onUserUpdate={() => {
+                setEditingProfile(false);
+              }}
+            />
+          )}
+          {!editingProfile && (
+            <>
+            <p>Pronouns: {user?.pronouns || "Not specified"}</p>
+          <p>Bio: {user?.bio || "No bio available"}</p>
+          <p>Location: {user?.location || "Not specified"}</p>
+            </>
+            )}
+          
         </div>
 
         {/* Favorite Posts Box */}
         <div className="favorite-posts-box">
           <h4>Favorite Posts</h4>
           <ul>
-            {user.favoritePosts?.length > 0 ? (
-              user.favoritePosts.map((post: any, index: number) => (
-                <li key={index}>{post.title}</li>
+            {user?.favorites?.length > 0 ? (
+              user.favorites.map((post: any, index: number) => (
+                <li key={index}>{post.recipeName}</li>
               ))
             ) : (
               <p>No favorite posts yet.</p>
