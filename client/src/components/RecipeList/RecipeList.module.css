@@ -96,39 +96,68 @@
 .reactionContainer {
   display: flex;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 8px;
+  padding: 0 8px;
   margin-top: auto;
-  /* Push to bottom */
+}
+
+.reactionGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 8px;
+  flex: 1;
+}
+
+.countDisplay {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 4px;
 }
 
 .reactionButton {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  background-color: #f8f8f8;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
+  gap: 8px;
+}
+
+.reactionCount {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.countLabel {
+  color: #888;
+  font-size: 0.75rem;
 }
 
 .reactionButton:hover {
   background-color: #f0f0f0;
-  transform: scale(1.02);
 }
 
-.reactionText {
-  font-size: 0.875rem;
-  color: #666;
-}
+
 
 /* Media Queries */
 @media screen and (max-width: 1400px) {
   .recipeGrid {
     grid-template-columns: repeat(3, minmax(250px, 300px));
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .reactionContainer {
+    padding: 6px;
+    gap: 6px;
+  }
+
+  .reactionButton {
+    padding: 5px 10px;
   }
 }
 
@@ -158,8 +187,44 @@
   }
 
   .reactionContainer {
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 8px;
+  }
+
+  .reactionButton {
+    min-width: 80px;
+    padding: 4px 8px;
+  }
+
+  .reactionCount {
+    font-size: 0.7rem;
+  }
+
+  .reactionGroup {
+    padding: 6px;
+  }
+
+  .countDisplay {
+    font-size: 0.8rem;
+  }
+
+  .countLabel {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .reactionContainer {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .reactionButton {
+    min-width: 70px;
+    padding: 4px 6px;
+  }
+
+  .reactionCount {
+    font-size: 0.65rem;
   }
 }
 
@@ -175,5 +240,13 @@
 
   .cardBody {
     font-size: 0.9rem;
+  }
+}
+
+/* Touch optimization */
+@media (pointer: coarse) {
+  .reactionButton {
+    min-height: 44px;
+    padding: 8px 12px;
   }
 }
