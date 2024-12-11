@@ -79,14 +79,19 @@ const Profile = () => {
         <div className="favorite-posts-box">
           <h4>Favorite Posts</h4>
           <ul>
-            {user?.favorites?.length > 0 ? (
-              user.favorites.map((post: any, index: number) => (
-                <li key={index}>{post.recipeName}</li>
-              ))
-            ) : (
-              <p>No favorite posts yet.</p>
-            )}
-          </ul>
+    {user?.favorites?.length > 0 ? (
+      user.favorites.map((post: any, index: number) => (
+        <li key={index}>
+          {/* Link to the recipe page using the recipeId */}
+          <a href={`/recipes/${post._id}`} className="favorite-link">
+            {post.recipeName}
+          </a>
+        </li>
+      ))
+    ) : (
+      <p>No favorite posts yet.</p>
+    )}
+  </ul>
         </div>
       </div>
 
