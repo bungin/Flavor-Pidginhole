@@ -7,7 +7,7 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
-
+import { QUERY_ME } from "../../utils/queries";
 import { UPDATE_USER } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
@@ -46,6 +46,7 @@ const UserForm: React.FC<UserFormProps> = ({ onUserUpdate, existingUser }) => {
         variables: {
             ...userProps,
           },
+        refetchQueries: [{ query: QUERY_ME }],
         },
       );
       
