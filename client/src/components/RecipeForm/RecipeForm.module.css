@@ -1,11 +1,12 @@
 /* Form Container */
 .formContainer {
   background: rgba(255, 255, 255, 0.7);
-  padding: 30px;
+  padding: 20px;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 95%;
   max-width: 700px;
-  margin: 40px auto;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -17,17 +18,19 @@
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
 }
 
-/* Form Field */
+/* Form Field Styling */
 .formField {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 }
 
+/* Textarea Styling */
 .textarea {
   width: 100%;
-  min-height: 100px;
-  padding: 15px;
+  min-height: 60px;
+  padding: 12px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -36,11 +39,14 @@
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(6px);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
 
-.textarea:focus {
+/* Focus States */
+.textarea:focus,
+.flexRow input:focus {
   border-color: #4caf50;
-  box-shadow: 0 0 8px #4caf50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
   outline: none;
 }
 
@@ -62,9 +68,12 @@
   background: #555;
 }
 
+/* Column Layout */
 .columnContainer {
   display: flex;
   gap: 20px;
+  flex-direction: row;
+  /* Default for larger screens */
 }
 
 .column {
@@ -74,25 +83,24 @@
   gap: 15px;
 }
 
+/* Input Row Styling */
 .flexRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 .flexRow input {
   flex: 1;
+  width: 100%;
   padding: 10px;
   font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #ddd;
   transition: border-color 0.3s ease;
-}
-
-.flexRow input:focus {
-  border-color: #4caf50;
-  outline: none;
+  box-sizing: border-box;
 }
 
 .buttonPrimary {
@@ -215,5 +223,106 @@
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .formContainer {
+    padding: 15px;
+    margin: 15px auto;
+    width: 90%;
+  }
+
+  .columnContainer {
+    flex-direction: column;
+    /* Stack columns on mobile */
+    gap: 15px;
+  }
+
+  .textarea {
+    min-height: 50px;
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .flexRow input {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .flexRow {
+    gap: 8px;
+  }
+
+  .buttonPrimary {
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
+  .buttonSecondary {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .buttonDanger {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .textarea {
+    min-height: 45px;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .flexRow input {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  .flexRow {
+    gap: 6px;
+  }
+}
+
+/* For very small devices */
+@media screen and (max-width: 320px) {
+  .formContainer {
+    padding: 8px;
+    gap: 15px;
+  }
+
+  .textarea,
+  .flexRow input {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .buttonPrimary,
+  .buttonSecondary,
+  .buttonDanger {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Maintain hover effects but adjust for touch devices */
+@media (hover: hover) {
+  .formContainer:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Touch Device Optimization */
+@media (pointer: coarse) {
+
+  .textarea,
+  .flexRow input {
+    min-height: 44px;
+    padding: 12px;
   }
 }

@@ -64,14 +64,14 @@ const resolvers = {
     me: async (_parent: any, _args: any, context: any) => {
       // If the user is authenticated, find and return the user's information along with their recipes
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("recipes").populate("favorites");
+        return await User.findOne({ _id: context.user._id }).populate("recipes").populate("favorites");
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError("Could not authenticate user.");
     },
     favorites: async (_parent: any, _args: any, context: any) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("favorites");
+        return await User.findOne({ _id: context.user._id }).populate("favorites");
       }
       throw new AuthenticationError("Could not authenticate");
     },
@@ -236,11 +236,11 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    updateUser: async (_: any, { pronouns, bio, location }: any, context: any) => {
+    updateUser: async (_: any, { displayName, pronouns, bio, location }: any, context: any) => {
       if (context.user) {
         return User.findOneAndUpdate(
           { _id: context.user._id },
-          { pronouns, bio, location },
+          { displayName, pronouns, bio, location },
           { new: true }
         );
       }
