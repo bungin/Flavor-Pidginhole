@@ -52,7 +52,7 @@ const typeDefs = `
     recipes: [Recipe]!
     recipe(recipeId: ID!): Recipe
     me: User
-    favorites: [Recipe]!
+    favorites: User
   }
 
   type Mutation {
