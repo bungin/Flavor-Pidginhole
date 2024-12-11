@@ -1,56 +1,76 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 import './Navbar.css'; 
-import Logo from '../../../../assets/Production Vision/Logo.png'
 
-
-
-interface NavbarProps {
-  logo: string;
-}
-
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<any> = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  
+  const handleLinkClick = () => {
+    setIsMenuOpen(false); // Close menu on link click
+  };
+
+  const logout = () => {
+    Auth.logout(); // Call the logout function from Auth
+    setIsMenuOpen(false); // Close the menu when logged out
+  };
+
   return (
     <nav className={`navbar ${isMenuOpen ? 'open' : ''}`}>
-      <div className="logo">
-        <img src={Logo} alt="Logo" />
-      </div>
-
       {/* Hamburger menu button */}
-      <button className="hamburger" onClick={toggleMenu}>
+      <button className="hamburger" onClick={toggleMenu} aria-label="Toggle navigation menu">
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>
       </button>
 
-     {/* Links */}
+      {/* Links */}
       <ul className={`nav-links ${isMenuOpen ? 'show' : ''}`}>
         {/* Home link */}
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/" onClick={handleLinkClick}>Home</Link>
         </li>
         
         <li>
-          <Link to="/favorites">Favorites</Link>
+          <Link to="/favorites" onClick={handleLinkClick}>Favorites</Link>
         </li>
+
         <li>
-          <Link to="/me">Profile</Link>
+          <Link to="/me" onClick={handleLinkClick}>Profile</Link>
         </li>
-        <li className="create-post">
-          <Link to="/newpost">
-            <button className="plus-button" aria-label="Create a Post">
-              <span className="plus-icon">+</span>
-            </button>
-          </Link>
-        </li>
+
+        {/* Conditionally render Login/Signup or Profile/Logout buttons */}
+        {Auth.loggedIn() ? (
+          <>
+            <li>
+              <Link to="/me" onClick={handleLinkClick} className="btn btn-info btn-sm">
+                {Auth.getProfile().data.username}'s Profile
+              </Link>
+            </li>
+            <li>
+              <button className="btn btn-light btn-sm" onClick={logout}>
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to="/login" onClick={handleLinkClick} className="btn btn-info btn-sm">
+                Login
+              </Link>
+            </li>
+            <li>
+              <Link to="/signup" onClick={handleLinkClick} className="btn btn-light btn-sm">
+                Signup
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );

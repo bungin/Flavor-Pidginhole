@@ -5,6 +5,7 @@ const typeDefs = `
     email: String
     password: String
     recipes: [Recipe]!
+    favorites: [Recipe]!
   }
 
   type Recipe {
@@ -51,6 +52,7 @@ const typeDefs = `
     recipes: [Recipe]!
     recipe(recipeId: ID!): Recipe
     me: User
+    favorites: [Recipe]!
   }
 
   type Mutation {
@@ -62,6 +64,9 @@ const typeDefs = `
     removeComment(recipeId: ID!, commentId: ID!): Recipe
     addLike(recipeId: ID!): Recipe
     removeLike(recipeId: ID!): Recipe
+    updateUser(displayName:String, pronouns: String, bio: String, location: String): User
+    addFavorite(recipeId: ID!): User
+    removeFavorite(recipeId: ID!): User
   }
 `;
 

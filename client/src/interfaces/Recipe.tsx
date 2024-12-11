@@ -6,6 +6,11 @@ export interface Recipe {
     recipeName: string;
     recipeIngredients: string[];
     recipeInstructions: string[];
+<<<<<<< HEAD
     recipeLikes: {_id: string[]}[];
   };
+=======
+    recipeLikes?: {_id: string[]}[];
+  }
+>>>>>>> d13ea2327c345ac96d9cafa7878483ba6bb73431
 

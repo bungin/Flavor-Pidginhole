@@ -1,0 +1,47 @@
+/* Logo styles */
+.logo-sm {
+  width: 375px; /* Increase logo size */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Text styles for the header text (What's on the menu?) */
+header p {
+  font-size: 2rem;
+  font-family: "Baloo 2", sans-serif;
+  margin: 0; /* Remove any default margin */
+  padding: 0; /* Remove padding */
+  text-align: center; /* Center the text */
+  position: relative; /* Enable positioning */
+  top: -4rem; /* Move the text up */
+}
+
+/* Make the other buttons smaller */
+header .btn {
+  font-size: 0.75rem; /* Smaller font size for buttons */
+  padding: 0.25rem 0.5rem; /* Adjust button padding */
+}
+
+.larger-btn {
+  font-size: 1rem; /* Larger font size for these buttons */
+  padding: 0.5rem 1rem; /* Larger padding */
+}
+
+/* Container layout */
+header .container {
+  display: flex;
+  flex-direction: column; /* Stack the logo and text vertically */
+  justify-content: center; /* Vertically center the content */
+  align-items: center; /* Horizontally center the content */
+  padding: 0.5rem 1rem; /* Tighter padding for the container */
+  text-align: center; /* Ensure the text inside the container is centered */
+}
+
+/* Background styles */
+header .bg-primary {
+  padding-top: 0.5rem; /* Less padding on the top */
+  padding-bottom: 0.5rem; /* Less padding on the bottom */
+  display: flex; /* Flexbox to center everything in the header */
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+  min-height: 200px; /* Ensure there's enough height for centering */
+}

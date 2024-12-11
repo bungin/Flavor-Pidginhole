@@ -50,7 +50,8 @@ const resolvers = {
       return User.findOne({ username }).populate("recipes");
     },
     recipes: async () => {
-      return await Recipe.find().sort({ createdAt: -1 });
+      const recipes = await Recipe.find().sort({ createdAt: -1 });
+      return recipes;
     },
     recipe: async (_parent: any, { recipeId }: RecipeArgs) => {
       return await Recipe.findOne({ _id: recipeId }).populate({
@@ -63,10 +64,16 @@ const resolvers = {
     me: async (_parent: any, _args: any, context: any) => {
       // If the user is authenticated, find and return the user's information along with their recipes
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("recipes");
+        return User.findOne({ _id: context.user._id }).populate("recipes").populate("favorites");
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError("Could not authenticate user.");
+    },
+    favorites: async (_parent: any, _args: any, context: any) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate("favorites");
+      }
+      throw new AuthenticationError("Could not authenticate");
     },
   },
   Mutation: {
@@ -113,7 +120,8 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { recipes: recipe._id } }
+          { $addToSet: { recipes: recipe._id } },
+          { new: true }
         );
 
         return recipe;
@@ -227,6 +235,44 @@ const resolvers = {
         );
       }
       throw AuthenticationError;
+    },
+    updateUser: async (_: any, { pronouns, bio, location }: any, context: any) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { pronouns, bio, location },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
+    },
+    addFavorite: async (
+      _parent: any,
+      { recipeId }: { recipeId: string },
+      context: any
+    ) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { favorites: recipeId } },
+          { new: true }
+        ).populate("recipes");
+      }
+      return null;
+    },
+    removeFavorite: async (
+      _parent: any,
+      { recipeId }: { recipeId: string },
+      context: any
+    ) => {
+      if (context.user) {
+        return User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { favorites: recipeId } },
+          { new: true }
+        ).populate("recipes");
+      }
+      return null;
     },
   },
 };

@@ -12,6 +12,17 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+  mutation updateUser($displayname: String, $pronouns: String, $bio: String, $location: String) {
+    updateUser(displayName: $displayname, pronouns: $pronouns, bio: $bio, location: $location) {
+      _id
+      username
+      email
+    }
+  }
+`;
+
+
 export const ADD_USER = gql`
   mutation Mutation($input: UserInput!) {
     addUser(input: $input) {
@@ -66,6 +77,28 @@ export const REMOVE_LIKE = gql`
   mutation removeLike($recipeId: ID!) {
     removeLike(recipeId: $recipeId) {
       _id
+    }
+  }
+`;
+
+export const ADD_FAVORITE = gql`
+  mutation addFavorite($recipeId: ID!) {
+    addFavorite(recipeId: $recipeId) {
+      recipes {
+        _id
+        recipeName
+      }
+    }
+  }
+`;
+
+export const REMOVE_FAVORITE = gql`
+  mutation Mutation($recipeId: ID!) {
+    removeFavorite(recipeId: $recipeId) {
+      recipes {
+        _id
+        recipeName
+      }
     }
   }
 `;

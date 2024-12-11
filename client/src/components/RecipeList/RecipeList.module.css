@@ -1,0 +1,179 @@
+/* Centered container for entire content */
+.pageContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.recipeGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(300px, 300px));
+  gap: 2rem;
+  justify-content: center;
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 100%;
+}
+
+.recipesTitle {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.recipeCard {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #f3de2c;
+  transition: transform 0.2s ease;
+  height: 400px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.recipeCard:hover {
+  transform: translateY(-4px);
+}
+
+.cardHeader {
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(45deg, #f3de2c, #fbb02d, #6699cc, #5c8001, #7cb518);
+  margin: -1.5rem -1.5rem 1rem -1.5rem;
+  /* Negative margin to extend to edges */
+}
+
+.cardHeader h5 {
+  font-size: 1.4rem;
+  color: white;
+  margin: 0;
+  font-weight: 800;
+  /* Increased from 600 to 800 for bolder text */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  /* Enhanced text shadow for better contrast */
+  font-family: monospace;
+  /* To match your existing style */
+  text-transform: uppercase;
+  /* Optional: makes the text all caps for more prominence */
+  letter-spacing: 1px;
+  /* Adds slight spacing between letters */
+}
+
+.cardBody {
+  flex: 1;
+  margin-bottom: 1.5rem;
+  color: #666;
+  line-height: 1.6;
+  overflow-y: auto;
+  /* Allow scrolling for longer descriptions */
+}
+
+.viewButton {
+  background-color: #556B2F;
+  color: white;
+  padding: 0.75rem;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  width: 100%;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.viewButton:hover {
+  background-color: #4c6128;
+}
+
+.reactionContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+  /* Push to bottom */
+}
+
+.reactionButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reactionButton:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.02);
+}
+
+.reactionText {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1400px) {
+  .recipeGrid {
+    grid-template-columns: repeat(3, minmax(250px, 300px));
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .recipeGrid {
+    grid-template-columns: repeat(2, minmax(250px, 300px));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .recipeGrid {
+    grid-template-columns: repeat(1, minmax(250px, 300px));
+    gap: 1.5rem;
+  }
+
+  .pageContainer {
+    padding: 0 0.5rem;
+  }
+
+  .recipeCard {
+    height: auto;
+    min-height: 350px;
+  }
+
+  .cardHeader h5 {
+    font-size: 1.2rem;
+  }
+
+  .reactionContainer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Ensure text remains readable on very small screens */
+@media screen and (max-width: 320px) {
+  .recipeCard {
+    padding: 1rem;
+  }
+
+  .cardHeader h5 {
+    font-size: 1.1rem;
+  }
+
+  .cardBody {
+    font-size: 0.9rem;
+  }
+}
